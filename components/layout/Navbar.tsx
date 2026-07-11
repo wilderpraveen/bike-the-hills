@@ -1,78 +1,100 @@
 "use client";
 
-import { useState } from "react";
+import Link from "next/link";
+import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
-import Button from "../ui/button";
-
-const links = [
-  { title: "Home", href: "/" },
-  { title: "Tours", href: "#" },
-  { title: "Destinations", href: "#" },
-  { title: "Gallery", href: "#" },
-  { title: "About", href: "#" },
-  { title: "Contact", href: "#" },
-];
+import { Button } from "@/components/ui/button";
+import { navigation } from "@/data/navigation";
+import { SITE } from "@/lib/constants";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 30);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <header className="fixed top-0 left-0 w-full z-50">
-      <nav className="max-w-7xl mx-auto flex items-center justify-between px-6 py-5">
+    <header
+      className={`fixed left-0 top-0 z-50 w-full transition-all duration-300 ${
+        scrolled
+          ? "bg-white/90 shadow-lg backdrop-blur-md"
+          : "bg-transparent"
+      }`}
+    >
+      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6">
+        <Link href="/" className="text-2xl font-bold">
+          <span
+            className={
+              scrolled ? "text-[#12372A]" : "text-white"
+            }
+          >
+            {SITE.name}
+          </span>
+        </Link>
 
-        <h1 className="text-2xl font-bold tracking-wide text-white">
-          Bike the Hills
-        </h1>
-
-        <ul className="hidden lg:flex items-center gap-10 text-white">
-
-          {links.map((link) => (
-            <li key={link.title}>
-              <a
-                href={link.href}
-                className="hover:text-yellow-300 transition-colors"
-              >
-                {link.title}
-              </a>
-            </li>
+        {/* Desktop Menu */}
+        <nav className="hidden items-center gap-8 lg:flex">
+          {navigation.map((item) => (
+            <Link
+              key={item.title}
+              href={item.href}
+              className={`transition-colors ${
+                scrolled
+                  ? "text-gray-800 hover:text-[#12372A]"
+                  : "text-white hover:text-yellow-300"
+              }`}
+            >
+              {item.title}
+            </Link>
           ))}
 
-        </ul>
-
-        <div className="hidden lg:block">
-          <Button href="#" variant="secondary">
+          <Button>
             Book Now
           </Button>
-        </div>
+        </nav>
 
+        {/* Mobile Button */}
         <button
-          className="lg:hidden text-white"
           onClick={() => setOpen(!open)}
+          className="lg:hidden"
         >
-          {open ? <X size={32} /> : <Menu size={32} />}
+          {open ? (
+            <X
+              className={scrolled ? "text-black" : "text-white"}
+            />
+          ) : (
+            <Menu
+              className={scrolled ? "text-black" : "text-white"}
+            />
+          )}
         </button>
-      </nav>
+      </div>
 
+      {/* Mobile Menu */}
       {open && (
-        <div className="lg:hidden bg-black/95 text-white px-6 py-8">
-
-          <div className="flex flex-col gap-6">
-
-            {links.map((link) => (
-              <a
-                key={link.title}
-                href={link.href}
+        <div className="border-t bg-white lg:hidden">
+          <div className="flex flex-col gap-5 p-6">
+            {navigation.map((item) => (
+              <Link
+                key={item.title}
+                href={item.href}
                 onClick={() => setOpen(false)}
-                className="text-lg"
               >
-                {link.title}
-              </a>
+                {item.title}
+              </Link>
             ))}
 
-            <Button href="#" variant="primary">
-              Book Your Adventure
+            <Button>
+              Book Now
             </Button>
-
           </div>
         </div>
       )}
