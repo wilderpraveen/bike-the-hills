@@ -1,11 +1,17 @@
-import Navbar from "@/components/layout/Navbar";
-import Hero from "@/components/home/Hero";
-
-export default function Home() {
+export default function HomePage() {
   return (
-    <>
-      <Navbar />
-      <Hero />
-    </>
+    <main className="min-h-screen bg-background">
+      <section className="flex min-h-screen items-center justify-center">
+        <div className="text-center">
+          <h1 className="text-5xl font-bold">
+            Bike the Hills
+          </h1>
+
+          <p className="mt-4 text-muted-foreground">
+            Foundation successfully created.
+          </p>
+        </div>
+      </section>
+    </main>
   );
 }
