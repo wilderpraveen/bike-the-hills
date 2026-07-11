@@ -1,9 +1,6 @@
 import type { Metadata } from "next";
-import { Inter, Playfair_Display, Geist } from "next/font/google";
+import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
-import { cn } from "@/lib/utils";
-
-const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
 const inter = Inter({
   subsets: ["latin"],
@@ -17,7 +14,8 @@ const playfair = Playfair_Display({
 
 export const metadata: Metadata = {
   title: "Bike the Hills",
-  description: "Premium Cycling Adventures in Spiti Valley",
+  description:
+    "Premium Cycling Adventures in Spiti Valley",
 };
 
 export default function RootLayout({
@@ -26,9 +24,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={cn("font-sans", geist.variable)}>
+    <html lang="en">
       <body
-        className={`${inter.variable} ${playfair.variable} antialiased`}
+        className={`${inter.variable} ${playfair.variable}`}
       >
         {children}
       </body>
