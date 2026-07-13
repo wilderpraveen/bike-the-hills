@@ -1,5 +1,5 @@
-<Contour
-   opacity={0.05}
-   rotate={12}
-   color="#12372A"
+<ContourBackground
+  opacity={0.06}
+  color="#12372A"
+  animate={true}
 />
