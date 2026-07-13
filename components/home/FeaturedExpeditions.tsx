@@ -1,8 +1,24 @@
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import SectionHeading from "@/components/shared/SectionHeading";
+import ExpeditionCard from "@/components/cards/ExpeditionCard";
+import { expeditions } from "@/data/expeditions";
 
-const expeditions = [
+<div className="grid gap-8 lg:grid-cols-3">
+  {expeditions.map((trip) => (
+    <ExpeditionCard
+      key={trip.title}
+      title={trip.title}
+      image={trip.image}
+      duration={trip.duration}
+      difficulty={trip.difficulty}
+      altitude={trip.altitude}
+      description={trip.description}
+    />
+  ))}
+</div>
+
+/* const expeditions = [
   {
     title: "Cold Desert Expedition",
     duration: "10 Days",
@@ -25,18 +41,16 @@ const expeditions = [
     image: "/images/routes/himalaya.jpg",
   },
 ];
-
+ */
 export default function FeaturedExpeditions() {
   return (
     <section className="bg-white py-24">
       <div className="container mx-auto px-6">
-        
         <SectionHeading
           eyebrow="Our Expeditions"
           title="Ride Beyond the Ordinary"
           description="Carefully designed Himalayan cycling expeditions created for riders seeking authentic landscapes, living culture, and unforgettable mountain journeys."
         />
-        
         <div className="grid gap-8 lg:grid-cols-3">
           {expeditions.map((trip) => (
             <div
