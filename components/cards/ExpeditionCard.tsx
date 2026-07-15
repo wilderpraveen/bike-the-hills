@@ -33,7 +33,7 @@ export default function ExpeditionCard({
         scale: 1.02,
       }}
       transition={{ duration: 0.3 }}
-      className="group overflow-hidden rounded-3xl bg-white shadow-xl transition-all duration-500 hover:shadow-2xl"
+      className="group flex h-full flex-col overflow-hidden rounded-3xl bg-white shadow-xl transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl"
     >
       {/* Image Section */}
       <div className="relative h-72 overflow-hidden rounded-t-3xl">

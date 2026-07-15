@@ -9,7 +9,7 @@ export default function Hero() {
     <section className="relative flex min-h-screen items-center justify-center overflow-hidden">
       {/* Background Image */}
       <Image
-        src="/images/hero/spiti-hero.jpg"
+        src="/images/Hero/spiti-hero.jpg"
         alt="Cycling in Spiti Valley"
         fill
         priority
@@ -53,22 +53,26 @@ export default function Hero() {
         </motion.p>
 
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.8 }}
-          className="mt-10 flex flex-wrap justify-center gap-4"
-        >
-          <Button size="lg">
-            Explore Tours
-          </Button>
+  initial={{ opacity: 0 }}
+  animate={{ opacity: 1 }}
+  transition={{ delay: 0.8 }}
+  className="mt-10 flex flex-wrap justify-center gap-4"
+>
+  <Button
+    size="lg"
+    className="rounded-xl bg-[#12372A] px-8 py-6 text-base text-white hover:bg-[#1b4d39]"
+  >
+    Explore Tours
+  </Button>
 
-          <Button
-            size="lg"
-            variant="outline"
-          >
-            Our Story
-          </Button>
-        </motion.div>
+  <Button
+    size="lg"
+    variant="outline"
+    className="rounded-xl border-2 border-white bg-white/10 px-8 py-6 text-base text-white backdrop-blur-sm hover:bg-white hover:text-[#12372A]"
+  >
+    Our Story
+  </Button>
+</motion.div>
       </div>
     </section>
   );
