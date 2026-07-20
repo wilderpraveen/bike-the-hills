@@ -58,20 +58,20 @@ export default function Hero() {
   transition={{ delay: 0.8 }}
   className="mt-10 flex flex-wrap justify-center gap-4"
 >
-  <Button
-    size="lg"
-    className="rounded-xl bg-[#12372A] px-8 py-6 text-base text-white hover:bg-[#1b4d39]"
-  >
-    Explore Tours
-  </Button>
+<Button
+  size="lg"
+  className="bg-[#12372A] px-8 py-6 text-base text-white rounded-md hover:bg-[#1b4d39]"
+>
+  Explore Tours
+</Button>
 
-  <Button
-    size="lg"
-    variant="outline"
-    className="rounded-xl border-2 border-white bg-white/10 px-8 py-6 text-base text-white backdrop-blur-sm hover:bg-white hover:text-[#12372A]"
-  >
-    Our Story
-  </Button>
+<Button
+  size="lg"
+  variant="outline"
+  className="border-2 border-white bg-white/10 px-8 py-6 text-base text-white rounded-md backdrop-blur-sm hover:bg-white hover:text-[#12372A]"
+>
+  Our Story
+</Button>
 </motion.div>
       </div>
     </section>

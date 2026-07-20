@@ -60,7 +60,7 @@ export default function ExpeditionCard({
       </div>
 
       {/* Content Section */}
-      <div className="space-y-5 p-8">
+      <div className="flex flex-1 flex-col space-y-5 p-8">
         <h3 className="font-playfair text-3xl font-bold leading-tight">
           {title}
         </h3>

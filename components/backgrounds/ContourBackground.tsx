@@ -32,7 +32,7 @@ export default function ContourBackground({
             } 1000 ${y}`}
             fill="none"
             stroke={color}
-            strokeWidth="1"
+            strokeWidth="0.5"
           />
         ))}
       </svg>
