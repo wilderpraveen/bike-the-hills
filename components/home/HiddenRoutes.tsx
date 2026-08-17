@@ -22,7 +22,7 @@ export default function HiddenRoutes() {
     <section className="relative overflow-hidden bg-white py-28">
 
       <ContourBackground
-        opacity={0.03}
+        opacity={0.07}
         color="#12372A"
         animate
       />

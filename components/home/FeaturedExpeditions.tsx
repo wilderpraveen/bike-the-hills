@@ -9,11 +9,11 @@ export default function FeaturedExpeditions() {
   return (
     <section className="relative overflow-hidden bg-stone-50 py-28">
       <ContourBackground
-        opacity={0.05}
+        opacity={0.07}
         color="#12372A"
         animate={false}
       />
-      <div className="relative z-10 container mx-auto px-6">
+      <div className="relative z-10 container mx-auto px-6 ">
         <SectionHeading
           eyebrow="Our Expeditions"
           title="Ride Beyond the Ordinary"
@@ -37,7 +37,7 @@ export default function FeaturedExpeditions() {
         </div>
       </div>
 </div>
-<div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-stone-50 to-transparent" />
+<div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-linear-to-t from-stone-50 to-transparent" />
     </section>
   );
 }

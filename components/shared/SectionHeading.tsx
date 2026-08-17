@@ -26,7 +26,7 @@ export default function SectionHeading({
       </h2>
 
       <p
-        className={`mt-6 text-lg leading-8 text-gray-600 ${
+        className={`mt-6 text-lg  aling-center leading-8 text-gray-600 ${
           centered
             ? "mx-auto max-w-3xl"
             : "max-w-2xl"

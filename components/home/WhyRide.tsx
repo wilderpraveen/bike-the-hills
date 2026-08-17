@@ -18,7 +18,7 @@ const features = [
   },
   {
     icon: Users,
-    title: "Small Group Expeditions",
+    title: "Small Group Expedition",
     description:
       "Travel in carefully curated groups where every rider receives personal attention and support.",
   },
@@ -40,7 +40,7 @@ export default function WhyRide() {
   return (
     <section className="relative overflow-hidden bg-[#f8f8f6] py-28">
       <ContourBackground
-        opacity={0.03}
+        opacity={0.07}
         color="#12372A"
         animate
     />
@@ -53,7 +53,7 @@ export default function WhyRide() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="mx-auto mb-20 flex  flex-col items-center text-center"
+          className="mx-auto mb-16 flex  flex-col items-center"
         >
           <p className="mb-5 uppercase tracking-[0.35em] text-sm text-[#12372A] text-center">
               Why Bike the Hills
@@ -71,7 +71,7 @@ export default function WhyRide() {
 
         {/* Cards */}
 
-        <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+       <div className="mx-auto grid max-w-7xl gap-8 md:grid-cols-2 lg:grid-cols-4">
 
           {features.map((feature, index) => {
             const Icon = feature.icon;
@@ -86,17 +86,17 @@ export default function WhyRide() {
                   delay: index * .12,
                   duration: .5,
                 }}
-                className="rounded-2xl border border-gray-200 bg-white p-8 shadow-sm transition-all duration-500 hover:-translate-y-2 hover:border-[#12372A] hover:bg-[#fcfcfb] hover:shadow-xl"
+                className="group/card min-h-75 rounded-2xl border border-gray-200 bg-white p-7 shadow-sm transition-all duration-500 hover:-translate-y-2 hover:border-[#12372A] hover:shadow-xl"
               >
-                <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-md bg-[#12372A] text-white">
-                  <Icon size={24} />
-                </div>
+               <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-md bg-transparent text-[#12372A]">
+                  <Icon size={26} strokeWidth={1.8} />
+               </div>
 
-                <h3 className="mb-4 font-playfair text-xl leading-tight font-bold">
+                <h3 className="mb-4 font-playfair text-[1.45rem] font-semibold leading-tight text-gray-900">
                   {feature.title}
                 </h3>
 
-                <p className="leading-7 text-gray-600">
+               <p className="leading-7 text-gray-600">
                   {feature.description}
                 </p>
               </motion.div>
