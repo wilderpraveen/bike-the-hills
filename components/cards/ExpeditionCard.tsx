@@ -28,12 +28,9 @@ export default function ExpeditionCard({
 }: ExpeditionCardProps) {
   return (
     <motion.article
-      whileHover={{
-        y: -10,
-        scale: 1.02,
-      }}
+      whileHover={{ y: -6 }}
       transition={{ duration: 0.3 }}
-      className="group flex h-full flex-col overflow-hidden rounded-3xl bg-white shadow-xl transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl"
+      className="group flex h-full flex-col overflow-hidden rounded-3xl bg-white shadow-lg transition-shadow duration-300 hover:shadow-2xl"
     >
       {/* Image Section */}
       <div className="relative h-72 overflow-hidden rounded-t-3xl">
@@ -45,7 +42,7 @@ export default function ExpeditionCard({
         />
 
         {/* Dark Gradient */}
-       <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+       <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/20 to-transparent" />
 
         {/* Region & Season */}
         <div className="absolute inset-x-6 top-6 z-10 flex items-center justify-between">
