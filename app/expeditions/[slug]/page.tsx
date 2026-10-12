@@ -192,10 +192,10 @@ export default async function ExpeditionDetailPage({ params }: PageProps) {
             </Link>
             <p className="mb-4 text-sm font-semibold uppercase tracking-[0.28em] text-white/80">Kinnaur &amp; Spiti Valley · Himachal Pradesh</p>
             <h1 className="max-w-4xl font-playfair text-5xl font-bold leading-tight sm:text-6xl lg:text-7xl">
-              Summer Mountain Biking Expedition
+              Cold Desert Expedition
             </h1>
             <p className="mt-6 max-w-3xl text-lg leading-8 text-white/90 sm:text-xl">
-              Cycle from the greener hills of Kinnaur into the high-altitude desert of Spiti on a 10-day journey through mountain roads, ancient monasteries and welcoming Himalayan villages.
+              A 10-day cycling journey from Kinnaur’s river valleys to Spiti’s high-altitude desert, linking remote villages, ancient monasteries and dramatic Himalayan passes.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <span className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-black/20 px-4 py-2 text-sm backdrop-blur-sm"><CalendarDays size={17} /> 10 Days</span>
@@ -210,16 +210,16 @@ export default async function ExpeditionDetailPage({ params }: PageProps) {
           <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[1.2fr_0.8fr]">
             <div>
               <p className="mb-3 text-sm font-semibold uppercase tracking-[0.25em] text-[#12372A]">About Spiti</p>
-              <h2 className="font-playfair text-4xl font-bold leading-tight text-gray-900 sm:text-5xl">Cycle through the Middle Land</h2>
+              <h2 className="font-playfair text-4xl font-bold leading-tight text-gray-900 sm:text-5xl">Into the heart of the Cold Desert</h2>
               <div className="mt-6 max-w-3xl space-y-5 text-lg leading-8 text-gray-600">
                 <p>
-                  The name Spiti comes from Piti, meaning “middle land”—a kingdom nestled between the larger regions of Tibet and Ladakh. Its arid Trans-Himalayan landscape, Buddhist heritage and remote settlements make it a remarkable place to explore at a slower pace.
+                  Spiti—often described as the “middle land” between Tibet and the Indian Himalaya—is a high-altitude desert of sculpted mountains, quiet villages and deep Buddhist heritage. Travelling by bicycle lets you experience this distinctive landscape at a slower, more meaningful pace.
                 </p>
                 <p>
                   This journey takes you beyond Spiti into the beautiful hills of Kinnaur and the greener parts of lower Himachal. Travelling by bicycle lets you experience the changing landscapes and local life along the way; the journey is as memorable as the destinations.
                 </p>
                 <p>
-                  Compared with routes that cross several of Ladakh’s highest passes, this Himachal cycling expedition is designed to be more moderate in overall demand while still offering high-altitude riding, sustained climbs and otherworldly scenery. Good fitness and previous cycling experience are recommended.
+                  This route combines Kinnaur’s greener valleys with Spiti’s stark, otherworldly terrain. Although rated moderate, it includes long riding days, sustained climbs and high-altitude sections. Previous cycling experience and good fitness are important.
                 </p>
               </div>
               <div className="mt-10 grid gap-4 sm:grid-cols-2">
@@ -268,7 +268,7 @@ export default async function ExpeditionDetailPage({ params }: PageProps) {
           <div className="mx-auto max-w-7xl">
             <div className="max-w-3xl">
               <p className="mb-3 text-sm font-semibold uppercase tracking-[0.25em] text-[#12372A]">Tour highlights</p>
-              <h2 className="font-playfair text-4xl font-bold text-gray-900 sm:text-5xl">A journey through culture and high mountains</h2>
+              <h2 className="font-playfair text-4xl font-bold text-gray-900 sm:text-5xl">Ancient culture. High-altitude roads. Remote Himalayan life.</h2>
             </div>
             <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {[
