@@ -176,7 +176,7 @@ export default async function ExpeditionDetailPage({ params }: PageProps) {
     return (
       <main className="min-h-screen bg-stone-50">
         <Navbar />
-        <section className="relative isolate flex min-h-[72vh] items-end overflow-hidden px-6 pb-16 pt-32 sm:pb-20">
+        <section className="relative isolate flex min-h-[64vh] items-end overflow-hidden px-6 pb-14 pt-28 sm:pb-18">
           <Image
             src={expedition.image}
             alt={expedition.title}
@@ -185,16 +185,16 @@ export default async function ExpeditionDetailPage({ params }: PageProps) {
             sizes="100vw"
             className="absolute inset-0 -z-20 object-cover"
           />
-          <div className="absolute inset-0 -z-10 bg-gradient-to-t from-black/85 via-black/45 to-black/10" />
+          <div className="absolute inset-0 -z-10 bg-gradient-to-t from-black/90 via-black/55 to-black/20" />
           <div className="mx-auto w-full max-w-7xl text-white">
             <Link href="/#expeditions" className="mb-8 inline-flex items-center gap-2 text-sm font-medium text-white/90 transition hover:text-white">
               <ArrowLeft size={17} /> All expeditions
             </Link>
             <p className="mb-4 text-sm font-semibold uppercase tracking-[0.28em] text-white/80">Kinnaur &amp; Spiti Valley · Himachal Pradesh</p>
-            <h1 className="max-w-4xl font-playfair text-5xl font-bold leading-tight sm:text-6xl lg:text-7xl">
+            <h1 className="max-w-4xl font-playfair text-5xl font-bold leading-[1.05] tracking-tight drop-shadow-sm sm:text-6xl lg:text-7xl">
               Cold Desert Expedition
             </h1>
-            <p className="mt-6 max-w-3xl text-lg leading-8 text-white/90 sm:text-xl">
+            <p className="mt-6 max-w-2xl text-base leading-7 text-white/90 sm:text-lg sm:leading-8">
               A 10-day cycling journey from Kinnaur’s river valleys to Spiti’s high-altitude desert, linking remote villages, ancient monasteries and dramatic Himalayan passes.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
@@ -206,7 +206,7 @@ export default async function ExpeditionDetailPage({ params }: PageProps) {
           </div>
         </section>
 
-        <section className="px-6 py-16 sm:py-20">
+        <section className="px-6 py-14 sm:py-18">
           <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[1.2fr_0.8fr]">
             <div>
               <p className="mb-3 text-sm font-semibold uppercase tracking-[0.25em] text-[#12372A]">About Spiti</p>
@@ -229,7 +229,7 @@ export default async function ExpeditionDetailPage({ params }: PageProps) {
                   { icon: ShieldCheck, title: "Technical support", text: "Ride with mechanical assistance and a backup vehicle." },
                   { icon: Mountain, title: "Living heritage", text: "Visit remote villages and historic monasteries." },
                 ].map(({ icon: Icon, title, text }) => (
-                  <div key={title} className="rounded-2xl border border-stone-200 bg-white p-5">
+                  <div key={title} className="rounded-2xl border border-stone-200/80 bg-white p-5 shadow-sm transition-shadow hover:shadow-md">
                     <span className="flex size-11 items-center justify-center rounded-full bg-[#12372A]/10 text-[#12372A]"><Icon size={21} /></span>
                     <h3 className="mt-4 font-semibold text-gray-900">{title}</h3>
                     <p className="mt-2 leading-6 text-gray-600">{text}</p>
@@ -238,7 +238,7 @@ export default async function ExpeditionDetailPage({ params }: PageProps) {
               </div>
             </div>
 
-            <aside className="h-fit rounded-3xl bg-white p-6 shadow-sm ring-1 ring-black/5 sm:p-8 lg:sticky lg:top-24">
+            <aside className="h-fit rounded-3xl border border-stone-200/80 bg-white p-6 shadow-lg shadow-stone-900/5 sm:p-8 lg:sticky lg:top-24">
               <p className="text-sm font-semibold uppercase tracking-[0.22em] text-[#12372A]">Expedition at a glance</p>
               <h3 className="mt-3 font-playfair text-3xl font-bold text-gray-900">The essentials</h3>
               <div className="mt-7 space-y-5">
@@ -288,14 +288,14 @@ export default async function ExpeditionDetailPage({ params }: PageProps) {
           </div>
         </section>
 
-        <section className="px-6 py-16 sm:py-24">
+        <section className="px-6 py-14 sm:py-20">
           <div className="mx-auto max-w-5xl">
             <p className="mb-3 text-sm font-semibold uppercase tracking-[0.25em] text-[#12372A]">Day by day</p>
             <h2 className="font-playfair text-4xl font-bold text-gray-900 sm:text-5xl">Tour plan &amp; itinerary</h2>
             <p className="mt-5 max-w-3xl leading-7 text-gray-600">Distances and elevation figures below follow the supplied route plan. Actual riding conditions and timing can vary with weather, road conditions and the group.</p>
             <div className="mt-10 space-y-5">
               {itinerary.map((day) => (
-                <article key={day.day} className="overflow-hidden rounded-2xl border border-stone-200 bg-white">
+                <article key={day.day} className="overflow-hidden rounded-2xl border border-stone-200 bg-white shadow-sm transition-shadow hover:shadow-md">
                   <div className="grid sm:grid-cols-[88px_1fr]">
                     <div className="flex items-center gap-3 bg-[#12372A] px-5 py-4 text-white sm:flex-col sm:justify-center sm:gap-1 sm:px-3">
                       <span className="text-xs font-semibold uppercase tracking-[0.2em] text-white/70">Day</span>
@@ -319,7 +319,7 @@ export default async function ExpeditionDetailPage({ params }: PageProps) {
 
         <section className="border-y border-stone-200 bg-white px-6 py-16 sm:py-20">
           <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-2">
-            <div className="rounded-3xl border border-stone-200 p-6 sm:p-8">
+            <div className="rounded-3xl border border-stone-200 bg-white p-6 shadow-sm sm:p-8">
               <p className="text-sm font-semibold uppercase tracking-[0.22em] text-[#12372A]">Included</p>
               <h2 className="mt-3 font-playfair text-3xl font-bold text-gray-900">What’s included</h2>
               <BulletList items={included} positive />
