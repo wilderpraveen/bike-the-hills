@@ -2,15 +2,15 @@ export const expeditions = [
   {
     id: 1,
     slug: "cold-desert-expedition",
-    title: "Cold Desert Expedition",
-    region: "Spiti Valley",
+    title: "Summer Mountain Biking Expedition",
+    region: "Kinnaur & Spiti Valley",
     duration: "10 Days",
-    difficulty: "Intermediate",
-    altitude: "4,550 m",
+    difficulty: "Moderate",
+    altitude: "4,590 m",
     season: "June - September",
     image: "/images/routes/spiti.jpg",
     description:
-      "Ride through ancient villages, high mountain passes and the spectacular cold desert landscapes of Spiti Valley.",
+      "Cycle from the green hills of Kinnaur into Spiti’s dramatic high-altitude desert on a 10-day Himalayan journey.",
   },
 
   {
