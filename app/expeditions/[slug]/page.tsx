@@ -6,7 +6,6 @@ import {
   Bike,
   CalendarDays,
   CheckCircle2,
-  Clock3,
   MapPinned,
   Mountain,
   Users,
