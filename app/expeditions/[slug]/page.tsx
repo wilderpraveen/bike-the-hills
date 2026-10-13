@@ -165,9 +165,10 @@ export default async function ExpeditionDetailPage({ params }: PageProps) {
                   </div>
                 ))}
               </div>
-              <Link href="/#expeditions" className="mt-8 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#12372A] px-6 py-4 font-semibold text-white transition hover:bg-[#1b4d39]">
+              <Link href="/contact?expedition=cold-desert-expedition" className="mt-8 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#12372A] px-6 py-4 font-semibold text-white transition hover:bg-[#1b4d39]">
                 Enquire about this expedition <ArrowRight size={17} />
               </Link>
+              <a href="https://wa.me/918744014925?text=Hello%20Bike%20the%20Hills%2C%20I%27m%20interested%20in%20the%20Cold%20Desert%20Expedition." target="_blank" rel="noreferrer" className="mt-3 inline-flex w-full items-center justify-center gap-2 border border-[#12372A] px-6 py-3.5 font-semibold text-[#12372A] transition hover:bg-stone-50">Enquire on WhatsApp <ArrowRight size={17} /></a>
               <p className="mt-3 text-center text-xs leading-5 text-gray-500">Custom group size. Pricing, GST treatment and final route details are confirmed on enquiry.</p>
             </aside>
           </div>
