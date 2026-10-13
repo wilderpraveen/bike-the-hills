@@ -242,9 +242,14 @@ export default async function ExpeditionDetailPage({ params }: PageProps) {
               <div className="rounded-2xl bg-[#12372A] p-6 text-white sm:p-8">
                 <h3 className="font-playfair text-2xl font-bold">Ready to ride through Spiti?</h3>
                 <p className="mt-3 leading-7 text-white/80">Talk to Bike the Hills about dates, availability, preparation and the details of your expedition. Pricing and final group limits are confirmed on enquiry.</p>
-                <Link href="/#expeditions" className="mt-6 inline-flex items-center gap-2 rounded-xl bg-white px-5 py-3 font-semibold text-[#12372A] transition hover:bg-stone-100">
-                  Contact the team <ArrowRight size={17} />
-                </Link>
+                <div className="mt-6 flex flex-wrap gap-3">
+                  <Link href="/contact?expedition=cold-desert-expedition" className="inline-flex items-center gap-2 rounded-xl bg-white px-5 py-3 font-semibold text-[#12372A] transition hover:bg-stone-100">
+                    Enquiry form <ArrowRight size={17} />
+                  </Link>
+                  <a href="https://wa.me/918744014925?text=Hello%20Bike%20the%20Hills%2C%20I%27m%20interested%20in%20the%20Cold%20Desert%20Expedition." target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 border border-white/50 px-5 py-3 font-semibold text-white transition hover:bg-white/10">
+                    WhatsApp <ArrowRight size={17} />
+                  </a>
+                </div>
               </div>
             </div>
           </div>
