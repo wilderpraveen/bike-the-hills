@@ -115,7 +115,7 @@ export default async function ExpeditionDetailPage({ params }: PageProps) {
         </section>
 
         <section className="px-6 py-14 sm:py-18">
-          <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[1.2fr_0.8fr]">
+          <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1.2fr_0.8fr]">
             <div>
               <p className="mb-3 text-sm font-semibold uppercase tracking-[0.25em] text-[#12372A]">About Spiti</p>
               <h2 className="font-playfair text-4xl font-bold leading-tight text-gray-900 sm:text-5xl">Into the heart of the Cold Desert</h2>
@@ -174,7 +174,7 @@ export default async function ExpeditionDetailPage({ params }: PageProps) {
           </div>
         </section>
 
-        <section className="border-y border-stone-200 bg-white px-6 py-16 sm:py-20">
+        <section className="border-y border-stone-200 bg-white px-6 py-14 sm:py-16">
           <div className="mx-auto max-w-7xl">
             <div className="max-w-3xl">
               <p className="mb-3 text-sm font-semibold uppercase tracking-[0.25em] text-[#12372A]">Tour highlights</p>
@@ -189,7 +189,7 @@ export default async function ExpeditionDetailPage({ params }: PageProps) {
                 "Enjoy immersive local experiences",
                 "Visit historic monasteries, some over 1,000 years old",
               ].map((item, index) => (
-                <div key={item} className="flex items-start gap-3 rounded-2xl bg-stone-50 p-5">
+                <div key={item} className="flex items-start gap-3 border-t border-stone-200 pt-5">
                   <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-[#12372A] text-sm font-semibold text-white">{String(index + 1).padStart(2, "0")}</span>
                   <p className="leading-6 text-gray-700">{item}</p>
                 </div>
@@ -207,7 +207,7 @@ export default async function ExpeditionDetailPage({ params }: PageProps) {
           </div>
         </section>
 
-        <section className="border-y border-stone-200 bg-white px-6 py-16 sm:py-20">
+        <section className="border-y border-stone-200 bg-white px-6 py-14 sm:py-16">
           <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-2">
             <div className="rounded-3xl border border-stone-200 bg-white p-6 shadow-sm sm:p-8">
               <p className="text-sm font-semibold uppercase tracking-[0.22em] text-[#12372A]">Included</p>
@@ -223,7 +223,7 @@ export default async function ExpeditionDetailPage({ params }: PageProps) {
           </div>
         </section>
 
-        <section className="px-6 py-16 sm:py-24">
+        <section className="px-6 py-14 sm:py-20">
           <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.8fr_1.2fr]">
             <div>
               <p className="mb-3 text-sm font-semibold uppercase tracking-[0.25em] text-[#12372A]">Good to know</p>
@@ -261,7 +261,7 @@ export default async function ExpeditionDetailPage({ params }: PageProps) {
   return (
     <main className="min-h-screen bg-stone-50">
       <Navbar />
-      <section className="relative isolate flex min-h-[72vh] items-end overflow-hidden px-6 pb-16 pt-32 sm:pb-20">
+      <section className="relative isolate flex min-h-[62vh] items-end overflow-hidden px-6 pb-12 pt-28 sm:pb-16">
         <Image src={expedition.image} alt={expedition.title} fill priority sizes="100vw" className="absolute inset-0 -z-20 object-cover" />
         <div className="absolute inset-0 -z-10 bg-gradient-to-t from-black/85 via-black/40 to-black/15" />
         <div className="mx-auto w-full max-w-7xl text-white">
@@ -276,13 +276,13 @@ export default async function ExpeditionDetailPage({ params }: PageProps) {
           </div>
         </div>
       </section>
-      <section className="px-6 py-20 sm:py-24">
+      <section className="px-6 py-14 sm:py-16">
         <div className="mx-auto grid max-w-7xl gap-14 lg:grid-cols-[1.15fr_0.85fr]">
           <div>
             <p className="mb-3 text-sm font-semibold uppercase tracking-[0.25em] text-[#12372A]">The journey</p>
             <h2 className="font-playfair text-4xl font-bold leading-tight text-gray-900 sm:text-5xl">Discover the Himalayas beyond the usual route</h2>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-gray-600">Ride through high mountain landscapes, remote settlements and places shaped by local culture. Each Bike the Hills expedition is designed around the character of its region and the experience of travelling by bicycle.</p>
-            <div className="mt-10 rounded-2xl border border-stone-200 bg-white p-6 sm:p-8">
+            <div className="mt-10 border-b border-stone-200 last:border-b-0 p-6 sm:p-8">
               <h3 className="font-playfair text-2xl font-bold text-gray-900">Expedition overview</h3>
               <div className="mt-6 grid gap-6 sm:grid-cols-2">
                 <div><p className="text-sm text-gray-500">Operating season</p><p className="mt-1 font-semibold text-gray-900">{expedition.season}</p></div>
@@ -308,7 +308,7 @@ export default async function ExpeditionDetailPage({ params }: PageProps) {
                 </div>
               ))}
             </div>
-            <div className="mt-8 rounded-2xl bg-stone-50 p-5"><div className="flex items-start gap-3"><CheckCircle2 size={20} className="mt-0.5 shrink-0 text-[#12372A]" /><p className="text-sm leading-6 text-gray-600">The detailed day-by-day itinerary and final trip arrangements can be confirmed with the Bike the Hills team.</p></div></div>
+            <div className="mt-8 border-t border-stone-200 pt-5"><div className="flex items-start gap-3"><CheckCircle2 size={20} className="mt-0.5 shrink-0 text-[#12372A]" /><p className="text-sm leading-6 text-gray-600">The detailed day-by-day itinerary and final trip arrangements can be confirmed with the Bike the Hills team.</p></div></div>
             <Link href="/#expeditions" className="mt-7 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#12372A] px-6 py-4 font-semibold text-white transition hover:bg-[#1b4d39]">Explore all expeditions <ArrowLeft size={17} className="rotate-180" /></Link>
           </aside>
         </div>
