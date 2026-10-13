@@ -5,8 +5,8 @@ export const expeditions = [
     title: "Cold Desert Expedition",
     region: "Kinnaur & Spiti Valley",
     duration: "10 Days",
-    difficulty: "Moderate",
-    altitude: "4,590 m",
+    difficulty: "Intermediate",
+    altitude: "4,550 m",
     season: "June - September",
     image: "/images/routes/spiti.jpg",
     description:
