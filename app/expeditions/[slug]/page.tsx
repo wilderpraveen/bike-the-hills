@@ -14,108 +14,17 @@ import {
 } from "lucide-react";
 import { expeditions } from "@/data/expeditions";
 import Navbar from "@/components/layout/Navbar";
+import ItineraryAccordion from "@/components/expeditions/ItineraryAccordion";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
 };
 
-const itinerary = [
-  {
-    day: 1,
-    title: "Arrive in Shimla · Drive to Thanedar",
-    distance: "75 km by vehicle",
-    stats: "Start 2,100 m · Highest 2,700 m · Overnight 2,400 m",
-    description:
-      "Travel north from Shimla to Thanedar, a peaceful village surrounded by apple orchards. Settle into your accommodation, meet the team, prepare your bike and get briefed on the journey ahead.",
-    highlights: "Apple orchards · Trip briefing · Bike preparation",
-  },
-  {
-    day: 2,
-    title: "Thanedar to Batseri, Sangla",
-    distance: "150 km by vehicle",
-    stats: "Start 2,400 m · Highest 2,800 m · Overnight 2,750 m",
-    description:
-      "Follow the Indo-Tibet Highway towards Rakcham before entering the Baspa River valley. Batseri and the surrounding villages offer a beautiful riverside setting and a comfortable place to rest before the cycling begins.",
-    highlights: "Baspa River valley · Kinnaur villages",
-  },
-  {
-    day: 3,
-    title: "Explore the Baspa River Valley",
-    distance: "40 km cycling",
-    stats: "Start 2,720 m · Highest 2,815 m · Overnight 2,720 m",
-    description:
-      "Ease into the expedition with an acclimatisation ride towards Chitkul. The route follows winding roads beside the river, with a steady climb on the way out and a rewarding descent on the return.",
-    highlights: "Chitkul · Baspa River · Acclimatisation ride",
-  },
-  {
-    day: 4,
-    title: "Batseri to Kanam",
-    distance: "83 km total · 75 km cycling",
-    stats: "Start 2,720 m · Highest 2,858 m · Overnight 2,703 m",
-    description:
-      "Ride onward through the Kinnaur region to Kanam, a historic monastic village also known as the Land of God. The village is associated with the translator Rinchen Zangpo and is known for its cluster of monasteries and traditional local culture.",
-    highlights: "Kinnaur landscapes · Kanam village · Monasteries",
-  },
-  {
-    day: 5,
-    title: "Kanam to Nako",
-    distance: "72 km cycling",
-    stats: "Start 2,703 m · Highest 3,625 m · Overnight 3,625 m",
-    description:
-      "A demanding riding day with repeated climbs and descents as the landscape becomes increasingly stark and high-altitude. Reach Nako, a village set beneath the dramatic backdrop of Reo Purgyil, then explore the village and its monastery.",
-    highlights: "High-altitude riding · Nako village · Nako Monastery",
-  },
-  {
-    day: 6,
-    title: "Nako · Gue · Tabo",
-    distance: "78 km cycling",
-    stats: "Start 3,625 m · Highest 3,850 m · Overnight 3,300 m",
-    description:
-      "Continue into Spiti with a visit to Gue, known for its preserved Buddhist monk mummy, displayed in a shrine. Then ride to Tabo, a welcoming village whose monastery was founded in 996 CE and remains one of the region’s most remarkable cultural sites.",
-    highlights: "Gue mummy shrine · Tabo village · Tabo Monastery",
-  },
-  {
-    day: 7,
-    title: "Tabo · Dhankar · Kaza",
-    distance: "54 km cycling",
-    stats: "Start 3,300 m · Highest 3,930 m · Overnight 3,650 m",
-    description:
-      "Ride through the striking, dry landscapes of Spiti towards Kaza, with a detour to Dhankar Monastery. If conditions and timing allow, take the hike to Dhankar Lake and look out over the confluence of the Pin and Spiti rivers before continuing to Kaza.",
-    highlights: "Dhankar Monastery · Dhankar Lake hike · River confluence",
-  },
-  {
-    day: 8,
-    title: "Kaza · Langza · Hikkim · Komic · Ki · Chicham",
-    distance: "55 km cycling",
-    stats: "Start 3,700 m · Highest 4,587 m · Overnight 4,270 m",
-    description:
-      "Explore some of Spiti’s celebrated high villages. Send a postcard from Hikkim, look for fossils around Langza and take in the high-altitude views at Komic. After lunch, continue towards Ki Monastery and cross the dramatic Chicham Bridge before settling in Chicham.",
-    highlights: "Langza fossils · Hikkim post office · Komic · Ki Monastery · Chicham Bridge",
-  },
-  {
-    day: 9,
-    title: "Chicham to Chandratal",
-    distance: "75 km cycling",
-    stats: "Start 4,270 m · Highest 4,590 m · Overnight 4,000 m",
-    description:
-      "Take on the final full day in the saddle across high mountain terrain towards Chandratal. The surface becomes rougher as the route climbs to Kunzum La; from the pass, continue towards the beautiful crescent-shaped lake for a memorable finish to the riding.",
-    highlights: "Kunzum La · High mountain riding · Chandratal",
-  },
-  {
-    day: 10,
-    title: "Chandratal to Manali",
-    distance: "170 km by vehicle",
-    stats: "Start around 4,000 m · Overnight in Manali around 1,900 m (optional)",
-    description:
-      "Leave early for the drive to Manali. The route is an adventure in itself, with rugged tracks, boulder sections, water crossings and dramatic mountain scenery. The expedition concludes in Manali; you can stay overnight or continue onwards, depending on your onward travel plans.",
-    highlights: "Chandra Valley · Mountain road journey · Trip ends in Manali",
-  },
-];
-
 const included = [
   "9 nights’ accommodation in hotels, homestays and camps, as applicable",
   "All meals from dinner on Day 1 to breakfast on Day 10",
-  "Transfers from Shimla to Manali, as outlined in the itinerary",
+  "Arrival transfer from Chandigarh",
+  "Final transfer from Chandratal to Manali",
   "Cycle rental and bicycle transportation",
   "Experienced lead cyclist and support staff",
   "Refreshments and hydration on cycling days",
@@ -127,7 +36,6 @@ const included = [
 ];
 
 const excluded = [
-  "5% GST and applicable taxes",
   "Travel and accident insurance",
   "Tips",
   "Alcoholic beverages",
@@ -199,9 +107,9 @@ export default async function ExpeditionDetailPage({ params }: PageProps) {
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <span className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-black/20 px-4 py-2 text-sm backdrop-blur-sm"><CalendarDays size={17} /> 10 Days</span>
-              <span className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-black/20 px-4 py-2 text-sm backdrop-blur-sm"><Bike size={17} /> Moderate</span>
-              <span className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-black/20 px-4 py-2 text-sm backdrop-blur-sm"><Users size={17} /> 6–10 guests</span>
-              <span className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-black/20 px-4 py-2 text-sm backdrop-blur-sm"><Mountain size={17} /> June–September</span>
+              <span className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-black/20 px-4 py-2 text-sm backdrop-blur-sm"><Bike size={17} /> Intermediate</span>
+              <span className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-black/20 px-4 py-2 text-sm backdrop-blur-sm"><Users size={17} /> Custom group size</span>
+              <span className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-black/20 px-4 py-2 text-sm backdrop-blur-sm"><Mountain size={17} /> Up to 4,550 m</span>
             </div>
           </div>
         </section>
@@ -244,11 +152,12 @@ export default async function ExpeditionDetailPage({ params }: PageProps) {
               <div className="mt-7 space-y-5">
                 {[
                   { icon: CalendarDays, label: "Duration", value: "10 days / 9 nights" },
-                  { icon: Bike, label: "Difficulty", value: "Moderate" },
-                  { icon: Users, label: "Group size", value: "6–10 people" },
-                  { icon: Mountain, label: "Season", value: "June to September" },
+                  { icon: Bike, label: "Difficulty", value: "Intermediate" },
+                  { icon: Users, label: "Group size", value: "Custom group size" },
+                  { icon: Mountain, label: "Maximum altitude", value: "4,550 m" },
+                  { icon: CalendarDays, label: "Season", value: "June to September" },
                   { icon: BedDouble, label: "Accommodation", value: "Hotels, homestays and camps" },
-                  { icon: MapPinned, label: "Route", value: "Shimla · Kinnaur · Spiti · Chandratal · Manali" },
+                  { icon: MapPinned, label: "Route", value: "Chandigarh · Kinnaur · Spiti · Chandratal · Manali" },
                 ].map(({ icon: Icon, label, value }) => (
                   <div key={label} className="flex gap-3">
                     <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-stone-100 text-[#12372A]"><Icon size={19} /></span>
@@ -259,7 +168,7 @@ export default async function ExpeditionDetailPage({ params }: PageProps) {
               <Link href="/#expeditions" className="mt-8 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#12372A] px-6 py-4 font-semibold text-white transition hover:bg-[#1b4d39]">
                 Enquire about this expedition <ArrowRight size={17} />
               </Link>
-              <p className="mt-3 text-center text-xs leading-5 text-gray-500">Dates, availability and final arrangements are confirmed with our team.</p>
+              <p className="mt-3 text-center text-xs leading-5 text-gray-500">Custom group size. Pricing, GST treatment and final route details are confirmed on enquiry.</p>
             </aside>
           </div>
         </section>
@@ -292,28 +201,8 @@ export default async function ExpeditionDetailPage({ params }: PageProps) {
           <div className="mx-auto max-w-5xl">
             <p className="mb-3 text-sm font-semibold uppercase tracking-[0.25em] text-[#12372A]">Day by day</p>
             <h2 className="font-playfair text-4xl font-bold text-gray-900 sm:text-5xl">Tour plan &amp; itinerary</h2>
-            <p className="mt-5 max-w-3xl leading-7 text-gray-600">Distances and elevation figures below follow the supplied route plan. Actual riding conditions and timing can vary with weather, road conditions and the group.</p>
-            <div className="mt-10 space-y-5">
-              {itinerary.map((day) => (
-                <article key={day.day} className="overflow-hidden rounded-2xl border border-stone-200 bg-white shadow-sm transition-shadow hover:shadow-md">
-                  <div className="grid sm:grid-cols-[88px_1fr]">
-                    <div className="flex items-center gap-3 bg-[#12372A] px-5 py-4 text-white sm:flex-col sm:justify-center sm:gap-1 sm:px-3">
-                      <span className="text-xs font-semibold uppercase tracking-[0.2em] text-white/70">Day</span>
-                      <span className="font-playfair text-3xl font-bold">{String(day.day).padStart(2, "0")}</span>
-                    </div>
-                    <div className="p-5 sm:p-7">
-                      <div className="flex flex-wrap items-start justify-between gap-3">
-                        <h3 className="font-playfair text-2xl font-bold text-gray-900">{day.title}</h3>
-                        <span className="inline-flex items-center gap-2 rounded-full bg-stone-100 px-3 py-1.5 text-sm font-medium text-gray-700"><Bike size={15} /> {day.distance}</span>
-                      </div>
-                      <p className="mt-3 flex items-start gap-2 text-sm leading-6 text-gray-500"><Mountain size={16} className="mt-1 shrink-0" />{day.stats}</p>
-                      <p className="mt-4 leading-7 text-gray-600">{day.description}</p>
-                      <p className="mt-4 text-sm leading-6"><span className="font-semibold text-[#12372A]">Highlights: </span><span className="text-gray-600">{day.highlights}</span></p>
-                    </div>
-                  </div>
-                </article>
-              ))}
-            </div>
+            <p className="mt-5 max-w-3xl leading-7 text-gray-600">The itinerary is being refined. Confirmed details are shown where available; distances and sleeping elevations marked “Unconfirmed” will be updated once the final route sheet is approved.</p>
+            <ItineraryAccordion />
           </div>
         </section>
 
@@ -328,6 +217,7 @@ export default async function ExpeditionDetailPage({ params }: PageProps) {
               <p className="text-sm font-semibold uppercase tracking-[0.22em] text-[#12372A]">Not included</p>
               <h2 className="mt-3 font-playfair text-3xl font-bold text-gray-900">What’s not included</h2>
               <BulletList items={excluded} />
+              <p className="mt-6 border-t border-stone-200 pt-5 text-sm leading-6 text-gray-500">Applicable taxes will be confirmed before booking. The 5% GST figure in the older itinerary is not being presented as a verified current rate.</p>
             </div>
           </div>
         </section>
@@ -350,7 +240,7 @@ export default async function ExpeditionDetailPage({ params }: PageProps) {
               </p>
               <div className="rounded-2xl bg-[#12372A] p-6 text-white sm:p-8">
                 <h3 className="font-playfair text-2xl font-bold">Ready to ride through Spiti?</h3>
-                <p className="mt-3 leading-7 text-white/80">Talk to Bike the Hills about dates, availability, preparation and the details of your expedition.</p>
+                <p className="mt-3 leading-7 text-white/80">Talk to Bike the Hills about dates, availability, preparation and the details of your expedition. Pricing and final group limits are confirmed on enquiry.</p>
                 <Link href="/#expeditions" className="mt-6 inline-flex items-center gap-2 rounded-xl bg-white px-5 py-3 font-semibold text-[#12372A] transition hover:bg-stone-100">
                   Contact the team <ArrowRight size={17} />
                 </Link>
