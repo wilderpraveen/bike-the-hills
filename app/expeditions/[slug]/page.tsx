@@ -13,6 +13,7 @@ import {
   ShieldCheck,
 } from "lucide-react";
 import { expeditions } from "@/data/expeditions";
+import { expeditionPageContent } from "@/data/expedition-page-content";
 import Navbar from "@/components/layout/Navbar";
 import ItineraryAccordion from "@/components/expeditions/ItineraryAccordion";
 
@@ -79,6 +80,14 @@ export default async function ExpeditionDetailPage({ params }: PageProps) {
   }
 
   const isSummerMountainBiking = expedition.slug === "cold-desert-expedition";
+  const pageContent = expeditionPageContent[expedition.slug] ?? {
+    eyebrow: "The journey",
+    heading: `Explore ${expedition.region} by bicycle`,
+    description: expedition.description,
+    highlights: [expedition.region, expedition.duration, expedition.difficulty],
+    enquiryPrompt:
+      "Ask the team to confirm the route, daily riding, accommodation, and trip arrangements.",
+  };
 
   if (isSummerMountainBiking) {
     return (
@@ -93,7 +102,7 @@ export default async function ExpeditionDetailPage({ params }: PageProps) {
             sizes="100vw"
             className="absolute inset-0 -z-20 object-cover"
           />
-          <div className="absolute inset-0 -z-10 bg-gradient-to-t from-black/85 via-black/45 to-black/10" />
+          <div className="absolute inset-0 -z-10 bg-linear-to-t from-black/85 via-black/45 to-black/10" />
           <div className="mx-auto w-full max-w-7xl text-white">
             <Link href="/#expeditions" className="mb-8 inline-flex items-center gap-2 text-sm font-medium text-white/90 transition hover:text-white">
               <ArrowLeft size={17} /> All expeditions
@@ -203,27 +212,7 @@ export default async function ExpeditionDetailPage({ params }: PageProps) {
             <p className="mb-3 text-sm font-semibold uppercase tracking-[0.25em] text-[#12372A]">Day by day</p>
             <h2 className="font-playfair text-4xl font-bold text-gray-900 sm:text-5xl">Tour plan &amp; itinerary</h2>
             <p className="mt-5 max-w-3xl leading-7 text-gray-600">Distances and elevation figures below follow the supplied route plan. Actual riding conditions and timing can vary with weather, road conditions and the group.</p>
-            <div className="mt-10 space-y-5">
-              {itinerary.map((day) => (
-                <article key={day.day} className="overflow-hidden rounded-2xl border border-stone-200 bg-white">
-                  <div className="grid sm:grid-cols-[88px_1fr]">
-                    <div className="flex items-center gap-3 bg-[#12372A] px-5 py-4 text-white sm:flex-col sm:justify-center sm:gap-1 sm:px-3">
-                      <span className="text-xs font-semibold uppercase tracking-[0.2em] text-white/70">Day</span>
-                      <span className="font-playfair text-3xl font-bold">{String(day.day).padStart(2, "0")}</span>
-                    </div>
-                    <div className="p-5 sm:p-7">
-                      <div className="flex flex-wrap items-start justify-between gap-3">
-                        <h3 className="font-playfair text-2xl font-bold text-gray-900">{day.title}</h3>
-                        <span className="inline-flex items-center gap-2 rounded-full bg-stone-100 px-3 py-1.5 text-sm font-medium text-gray-700"><Bike size={15} /> {day.distance}</span>
-                      </div>
-                      <p className="mt-3 flex items-start gap-2 text-sm leading-6 text-gray-500"><Mountain size={16} className="mt-1 shrink-0" />{day.stats}</p>
-                      <p className="mt-4 leading-7 text-gray-600">{day.description}</p>
-                      <p className="mt-4 text-sm leading-6"><span className="font-semibold text-[#12372A]">Highlights: </span><span className="text-gray-600">{day.highlights}</span></p>
-                    </div>
-                  </div>
-                </article>
-              ))}
-            </div>
+            <ItineraryAccordion />
           </div>
         </section>
 
@@ -299,9 +288,17 @@ export default async function ExpeditionDetailPage({ params }: PageProps) {
       <section className="px-6 py-14 sm:py-16">
         <div className="mx-auto grid max-w-7xl gap-14 lg:grid-cols-[1.15fr_0.85fr]">
           <div>
-            <p className="mb-3 text-sm font-semibold uppercase tracking-[0.25em] text-[#12372A]">The journey</p>
-            <h2 className="font-playfair text-4xl font-bold leading-tight text-gray-900 sm:text-5xl">Discover the Himalayas beyond the usual route</h2>
-            <p className="mt-6 max-w-2xl text-lg leading-8 text-gray-600">Ride through high mountain landscapes, remote settlements and places shaped by local culture. Each Bike the Hills expedition is designed around the character of its region and the experience of travelling by bicycle.</p>
+            <p className="mb-3 text-sm font-semibold uppercase tracking-[0.25em] text-[#12372A]">{pageContent.eyebrow}</p>
+            <h2 className="font-playfair text-4xl font-bold leading-tight text-gray-900 sm:text-5xl">{pageContent.heading}</h2>
+            <p className="mt-6 max-w-2xl text-lg leading-8 text-gray-600">{pageContent.description}</p>
+            <div className="mt-8 grid gap-3 sm:grid-cols-3">
+              {pageContent.highlights.map((highlight, index) => (
+                <div key={highlight} className="border-t border-stone-300 pt-4">
+                  <span className="text-xs font-semibold uppercase tracking-[0.18em] text-[#C79A3B]">0{index + 1}</span>
+                  <p className="mt-2 font-medium leading-6 text-gray-800">{highlight}</p>
+                </div>
+              ))}
+            </div>
             <div className="mt-10 border-b border-stone-200 last:border-b-0 p-6 sm:p-8">
               <h3 className="font-playfair text-2xl font-bold text-gray-900">Expedition overview</h3>
               <div className="mt-6 grid gap-6 sm:grid-cols-2">
@@ -328,8 +325,8 @@ export default async function ExpeditionDetailPage({ params }: PageProps) {
                 </div>
               ))}
             </div>
-            <div className="mt-8 border-t border-stone-200 pt-5"><div className="flex items-start gap-3"><CheckCircle2 size={20} className="mt-0.5 shrink-0 text-[#12372A]" /><p className="text-sm leading-6 text-gray-600">The detailed day-by-day itinerary and final trip arrangements can be confirmed with the Bike the Hills team.</p></div></div>
-            <Link href="/#expeditions" className="mt-7 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#12372A] px-6 py-4 font-semibold text-white transition hover:bg-[#1b4d39]">Explore all expeditions <ArrowLeft size={17} className="rotate-180" /></Link>
+            <div className="mt-8 border-t border-stone-200 pt-5"><div className="flex items-start gap-3"><CheckCircle2 size={20} className="mt-0.5 shrink-0 text-[#12372A]" /><p className="text-sm leading-6 text-gray-600">{pageContent.enquiryPrompt}</p></div></div>
+            <Link href={`/contact?expedition=${expedition.slug}`} className="mt-7 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#12372A] px-6 py-4 font-semibold text-white transition hover:bg-[#1b4d39]">Ask about this expedition <ArrowRight size={17} /></Link>
           </aside>
         </div>
       </section>

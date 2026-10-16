@@ -9,7 +9,6 @@ import {
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
-import ContourBackground from "@/components/backgrounds/ContourBackground";
 
 const highlights = [
   "Hidden villages beyond the tourist trail",
@@ -20,13 +19,7 @@ const highlights = [
 
 export default function HiddenRoutes() {
   return (
-    <section className="relative overflow-hidden bg-white py-28">
-
-      <ContourBackground
-        opacity={0.07}
-        color="#12372A"
-        animate
-      />
+    <section className="relative overflow-hidden bg-white pt-12 pb-28">
 
       <div className="relative z-10 container mx-auto px-6">
 

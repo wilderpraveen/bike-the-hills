@@ -8,7 +8,7 @@ interface ContourBackgroundProps {
 }
 
 export default function ContourBackground({
-  opacity = 0.06,
+  opacity = 0.05,
   color = "#12372A",
   animate = false,
   className = "",

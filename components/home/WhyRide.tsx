@@ -37,7 +37,7 @@ const reasons = [
 
 export default function WhyRide() {
   return (
-    <section className="relative overflow-hidden bg-white py-24">
+    <section className="relative overflow-hidden bg-white pt-24 pb-12">
       <div className="container mx-auto px-6 flex flex-col items-center">
         {/* Section Heading */}
 
