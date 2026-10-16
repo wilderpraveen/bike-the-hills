@@ -42,7 +42,7 @@ export default function ExpeditionCard({
           sizes="(max-width: 1024px) 100vw, 33vw"
           className="object-cover transition-transform duration-700 group-hover:scale-110"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+        <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/20 to-transparent" />
         <div className="absolute inset-x-6 top-6 z-10 flex items-center justify-between gap-2">
           <span className="rounded-full bg-[#12372A]/95 px-4 py-1 text-xs font-semibold uppercase tracking-wider text-white shadow-lg backdrop-blur-sm">
             {region}

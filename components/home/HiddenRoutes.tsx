@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { motion } from "framer-motion";
 import {
   ArrowRight,
@@ -81,9 +82,11 @@ export default function HiddenRoutes() {
 
             </div>
 
-            <Button className="mt-14 rounded-md bg-[#12372A] hover:bg-[#1b4d39]">
-              Discover the Routes
-              <ArrowRight className="ml-2" size={18} />
+            <Button asChild className="mt-14 rounded-md bg-[#12372A] hover:bg-[#1b4d39]">
+              <Link href="/destinations">
+                Discover the Routes
+                <ArrowRight className="ml-2" size={18} />
+              </Link>
             </Button>
 
           </motion.div>

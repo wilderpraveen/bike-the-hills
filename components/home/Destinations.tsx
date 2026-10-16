@@ -2,31 +2,12 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-
-const destinations = [
-  {
-    name: "Langza",
-    description:
-      "Ride into one of Spiti's most iconic high-altitude villages, surrounded by fossils, open valleys, and spectacular mountain landscapes.",
-    image: "/images/langza1.jpg",
-  },
-  {
-    name: "Komic",
-    description:
-      "Climb into the high desert to Komic, a remote Himalayan village and the starting point for our signature downhill experience.",
-    image: "/images/komic.jpg",
-  },
-  {
-    name: "Pin Valley",
-    description:
-      "Discover a quieter side of Spiti through remote villages, dramatic valleys, and landscapes far beyond the usual tourist trail.",
-    image: "/images/pin-valley.jpg",
-  },
-];
+import Link from "next/link";
+import { destinations } from "@/data/destinations";
 
 export default function Destinations() {
   return (
-    <section className="relative overflow-hidden bg-white py-24">
+    <section id="destinations" className="relative overflow-hidden bg-white py-24">
       <div className="container mx-auto px-6 flex flex-col items-center">
         {/* Section Heading */}
 
@@ -56,7 +37,7 @@ export default function Destinations() {
         <div className="grid gap-8 md:grid-cols-3">
           {destinations.map((destination, index) => (
             <motion.article
-              key={destination.name}
+              key={destination.slug}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -64,6 +45,7 @@ export default function Destinations() {
                 delay: index * 0.12,
                 duration: 0.5,
               }}
+              id={destination.slug}
               className="group overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm transition-all duration-500 hover:-translate-y-2 hover:border-[#12372A] hover:shadow-xl"
             >
               {/* Image */}
@@ -73,9 +55,9 @@ export default function Destinations() {
                   src={destination.image}
                   alt={destination.name}
                   fill
-                  //className="object-contain transition-transform duration-700 group-hover:scale-105"
-                  className="absolute inset-0 bg-linear-to-t from-black/25 via-transparent to-transparent"
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent" />
               </div>
 
               {/* Content */}
@@ -89,9 +71,12 @@ export default function Destinations() {
                   {destination.description}
                 </p>
 
-                <button className="mt-6 font-semibold text-[#12372A] transition-colors hover:text-[#C79A3B]">
-                  Explore destination →
-                </button>
+                <Link
+                  href={`/destinations#${destination.slug}`}
+                  className="mt-6 inline-flex items-center gap-2 font-semibold text-[#12372A] transition-colors hover:text-[#C79A3B]"
+                >
+                  Explore destination <span aria-hidden="true">→</span>
+                </Link>
               </div>
             </motion.article>
           ))}

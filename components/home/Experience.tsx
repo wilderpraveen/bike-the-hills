@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -71,8 +72,8 @@ export default function Experience() {
             ))}
           </div>
 
-          <Button className="mt-10 h-12 w-45 rounded-lg bg-[#12372A] px-8 text-base font-semibold transition-all duration-300 hover:bg-[#1b4d39] hover:-translate-y-1">
-            Start Your Journey
+          <Button asChild className="mt-10 h-12 w-45 rounded-lg bg-[#12372A] px-8 text-base font-semibold transition-all duration-300 hover:bg-[#1b4d39] hover:-translate-y-1">
+            <Link href="/contact">Start Your Journey</Link>
           </Button>
         </motion.div>
 

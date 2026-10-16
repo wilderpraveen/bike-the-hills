@@ -93,14 +93,14 @@ export default async function ExpeditionDetailPage({ params }: PageProps) {
             sizes="100vw"
             className="absolute inset-0 -z-20 object-cover"
           />
-          <div className="absolute inset-0 -z-10 bg-gradient-to-t from-black/90 via-black/55 to-black/20" />
+          <div className="absolute inset-0 -z-10 bg-gradient-to-t from-black/85 via-black/45 to-black/10" />
           <div className="mx-auto w-full max-w-7xl text-white">
             <Link href="/#expeditions" className="mb-8 inline-flex items-center gap-2 text-sm font-medium text-white/90 transition hover:text-white">
               <ArrowLeft size={17} /> All expeditions
             </Link>
             <p className="mb-4 text-sm font-semibold uppercase tracking-[0.28em] text-white/80">Kinnaur &amp; Spiti Valley · Himachal Pradesh</p>
-            <h1 className="max-w-4xl font-playfair text-5xl font-bold leading-[1.05] tracking-tight drop-shadow-sm sm:text-6xl lg:text-7xl">
-              Cold Desert Expedition
+            <h1 className="max-w-4xl font-playfair text-5xl font-bold leading-tight sm:text-6xl lg:text-7xl">
+              Summer Mountain Biking Expedition
             </h1>
             <p className="mt-6 max-w-2xl text-base leading-7 text-white/90 sm:text-lg sm:leading-8">
               A 10-day cycling journey from Kinnaur’s river valleys to Spiti’s high-altitude desert, linking remote villages, ancient monasteries and dramatic Himalayan passes.
@@ -114,8 +114,8 @@ export default async function ExpeditionDetailPage({ params }: PageProps) {
           </div>
         </section>
 
-        <section className="px-6 py-14 sm:py-18">
-          <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1.2fr_0.8fr]">
+        <section className="px-6 py-16 sm:py-20">
+          <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[1.2fr_0.8fr]">
             <div>
               <p className="mb-3 text-sm font-semibold uppercase tracking-[0.25em] text-[#12372A]">About Spiti</p>
               <h2 className="font-playfair text-4xl font-bold leading-tight text-gray-900 sm:text-5xl">Into the heart of the Cold Desert</h2>
@@ -178,7 +178,7 @@ export default async function ExpeditionDetailPage({ params }: PageProps) {
           <div className="mx-auto max-w-7xl">
             <div className="max-w-3xl">
               <p className="mb-3 text-sm font-semibold uppercase tracking-[0.25em] text-[#12372A]">Tour highlights</p>
-              <h2 className="font-playfair text-4xl font-bold text-gray-900 sm:text-5xl">Ancient culture. High-altitude roads. Remote Himalayan life.</h2>
+              <h2 className="font-playfair text-4xl font-bold text-gray-900 sm:text-5xl">A journey through culture and high mountains</h2>
             </div>
             <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {[
@@ -202,8 +202,28 @@ export default async function ExpeditionDetailPage({ params }: PageProps) {
           <div className="mx-auto max-w-5xl">
             <p className="mb-3 text-sm font-semibold uppercase tracking-[0.25em] text-[#12372A]">Day by day</p>
             <h2 className="font-playfair text-4xl font-bold text-gray-900 sm:text-5xl">Tour plan &amp; itinerary</h2>
-            <p className="mt-5 max-w-3xl leading-7 text-gray-600">The itinerary is being refined. Confirmed details are shown where available; distances and sleeping elevations marked “Unconfirmed” will be updated once the final route sheet is approved.</p>
-            <ItineraryAccordion />
+            <p className="mt-5 max-w-3xl leading-7 text-gray-600">Distances and elevation figures below follow the supplied route plan. Actual riding conditions and timing can vary with weather, road conditions and the group.</p>
+            <div className="mt-10 space-y-5">
+              {itinerary.map((day) => (
+                <article key={day.day} className="overflow-hidden rounded-2xl border border-stone-200 bg-white">
+                  <div className="grid sm:grid-cols-[88px_1fr]">
+                    <div className="flex items-center gap-3 bg-[#12372A] px-5 py-4 text-white sm:flex-col sm:justify-center sm:gap-1 sm:px-3">
+                      <span className="text-xs font-semibold uppercase tracking-[0.2em] text-white/70">Day</span>
+                      <span className="font-playfair text-3xl font-bold">{String(day.day).padStart(2, "0")}</span>
+                    </div>
+                    <div className="p-5 sm:p-7">
+                      <div className="flex flex-wrap items-start justify-between gap-3">
+                        <h3 className="font-playfair text-2xl font-bold text-gray-900">{day.title}</h3>
+                        <span className="inline-flex items-center gap-2 rounded-full bg-stone-100 px-3 py-1.5 text-sm font-medium text-gray-700"><Bike size={15} /> {day.distance}</span>
+                      </div>
+                      <p className="mt-3 flex items-start gap-2 text-sm leading-6 text-gray-500"><Mountain size={16} className="mt-1 shrink-0" />{day.stats}</p>
+                      <p className="mt-4 leading-7 text-gray-600">{day.description}</p>
+                      <p className="mt-4 text-sm leading-6"><span className="font-semibold text-[#12372A]">Highlights: </span><span className="text-gray-600">{day.highlights}</span></p>
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
           </div>
         </section>
 
@@ -263,7 +283,7 @@ export default async function ExpeditionDetailPage({ params }: PageProps) {
       <Navbar />
       <section className="relative isolate flex min-h-[62vh] items-end overflow-hidden px-6 pb-12 pt-28 sm:pb-16">
         <Image src={expedition.image} alt={expedition.title} fill priority sizes="100vw" className="absolute inset-0 -z-20 object-cover" />
-        <div className="absolute inset-0 -z-10 bg-gradient-to-t from-black/85 via-black/40 to-black/15" />
+        <div className="absolute inset-0 -z-10 bg-linear-to-t from-black/85 via-black/40 to-black/15" />
         <div className="mx-auto w-full max-w-7xl text-white">
           <Link href="/#expeditions" className="mb-8 inline-flex items-center gap-2 text-sm font-medium text-white/90 transition hover:text-white"><ArrowLeft size={17} /> All expeditions</Link>
           <p className="mb-4 text-sm font-semibold uppercase tracking-[0.28em] text-white/80">{expedition.region}</p>

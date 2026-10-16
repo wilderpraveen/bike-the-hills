@@ -82,10 +82,6 @@
 
 box-sizing:border-box;
 
-margin:0;
-
-padding:0;
-
 }
 
 html{
@@ -106,10 +102,10 @@ font-family:var(--font-playfair);
 
 }
 
-section{
-
-padding:80px 8%;
-
+@layer base {
+  section {
+    padding: 80px 8%;
+  }
 }
 
 .container{

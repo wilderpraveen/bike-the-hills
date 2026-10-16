@@ -16,6 +16,7 @@ export default function Navbar() {
       setScrolled(window.scrollY > 30);
     };
 
+    handleScroll();
     window.addEventListener("scroll", handleScroll);
 
     return () => window.removeEventListener("scroll", handleScroll);
@@ -23,6 +24,7 @@ export default function Navbar() {
 
   return (
     <header
+      id="top"
       className={`fixed left-0 top-0 z-50 w-full transition-all duration-300 ${
         scrolled
           ? "bg-white/90 shadow-lg backdrop-blur-md"
@@ -56,8 +58,8 @@ export default function Navbar() {
             </Link>
           ))}
 
-          <Button>
-            Book Now
+          <Button asChild>
+            <Link href="/contact">Book Now</Link>
           </Button>
         </nav>
 
@@ -65,6 +67,8 @@ export default function Navbar() {
         <button
           onClick={() => setOpen(!open)}
           className="lg:hidden"
+          aria-label={open ? "Close navigation menu" : "Open navigation menu"}
+          aria-expanded={open}
         >
           {open ? (
             <X
@@ -92,8 +96,10 @@ export default function Navbar() {
               </Link>
             ))}
 
-            <Button>
-              Book Now
+            <Button asChild>
+              <Link href="/contact" onClick={() => setOpen(false)}>
+                Book Now
+              </Link>
             </Button>
           </div>
         </div>
