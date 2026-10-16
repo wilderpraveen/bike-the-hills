@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 
@@ -61,16 +62,18 @@ export default function Hero() {
 <Button
   size="lg"
   className="bg-[#12372A] px-8 py-6 text-base text-white rounded-md hover:bg-[#1b4d39]"
+  asChild
 >
-  Explore Tours
+  <Link href="/tours">Explore Tours</Link>
 </Button>
 
 <Button
   size="lg"
   variant="outline"
   className="border-2 border-white bg-white/10 px-8 py-6 text-base text-white rounded-md backdrop-blur-sm hover:bg-white hover:text-[#12372A]"
+  asChild
 >
-  Our Story
+  <Link href="/about">Our Story</Link>
 </Button>
 </motion.div>
       </div>

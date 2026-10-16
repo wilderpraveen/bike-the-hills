@@ -3,14 +3,14 @@ export const expeditions = [
     id: 1,
     slug: "cold-desert-expedition",
     title: "Cold Desert Expedition",
-    region: "Spiti Valley",
+    region: "Kinnaur & Spiti Valley",
     duration: "10 Days",
     difficulty: "Intermediate",
     altitude: "4,550 m",
     season: "June - September",
     image: "/images/routes/spiti.jpg",
     description:
-      "Ride through ancient villages, high mountain passes and the spectacular cold desert landscapes of Spiti Valley.",
+      "Ride from the green valleys of Kinnaur into Spiti’s dramatic cold desert, passing remote villages, Buddhist monasteries and high mountain landscapes.",
   },
 
   {

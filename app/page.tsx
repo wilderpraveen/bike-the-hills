@@ -6,6 +6,7 @@ import HiddenRoutes from "@/components/home/HiddenRoutes";
 import Destinations from "@/components/home/Destinations";
 import Experience from "@/components/home/Experience";
 import Testimonials from "@/components/home/Testimonials";
+import Footer from "@/components/layout/Footer";
 
 export default function HomePage() {
   return (
@@ -18,6 +19,7 @@ export default function HomePage() {
       <Destinations />
       <Experience />
       <Testimonials />
+      <Footer />
     </>
   );
 }
