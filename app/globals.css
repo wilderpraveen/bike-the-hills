@@ -106,6 +106,28 @@ font-family:var(--font-playfair);
   section {
     padding: 80px 8%;
   }
+
+  section,
+  footer {
+    position: relative;
+    isolation: isolate;
+  }
+
+  section::before,
+  footer::before {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: url("/images/contour-lines.svg") center / cover no-repeat;
+    content: "";
+    opacity: 0.36;
+    pointer-events: none;
+  }
+
+  section.text-white::before,
+  footer::before {
+    filter: invert(1);
+  }
 }
 
 .container{

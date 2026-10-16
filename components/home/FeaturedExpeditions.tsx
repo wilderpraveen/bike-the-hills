@@ -1,12 +1,10 @@
 import SectionHeading from "@/components/shared/SectionHeading";
 import ExpeditionCard from "@/components/cards/ExpeditionCard";
-import ContourBackground from "@/components/backgrounds/ContourBackground";
 import { expeditions } from "@/data/expeditions";
 
 export default function FeaturedExpeditions() {
   return (
     <section id="expeditions" className="relative overflow-hidden bg-stone-50 py-28">
-      <ContourBackground opacity={0.07} color="#12372A" animate={false} />
       <div className="container relative z-10 mx-auto px-6">
         <SectionHeading
           eyebrow="Our Expeditions"
