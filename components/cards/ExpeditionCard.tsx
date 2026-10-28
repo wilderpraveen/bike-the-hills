@@ -43,39 +43,39 @@ export default function ExpeditionCard({
           className="object-cover transition-transform duration-700 group-hover:scale-110"
         />
         <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/20 to-transparent" />
-        <div className="absolute inset-x-6 top-6 z-10 flex items-center justify-between gap-2">
-          <span className="rounded-full bg-[#12372A]/95 px-4 py-1 text-xs font-semibold uppercase tracking-wider text-white shadow-lg backdrop-blur-sm">
+        <div className="absolute inset-x-4 top-4 z-10 flex items-center justify-between gap-2">
+          <span className="rounded-full bg-[#12372A]/95 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.08em] text-white shadow-lg backdrop-blur-sm">
             {region}
           </span>
-          <span className="rounded-full bg-white/90 px-3 py-1 text-xs font-medium text-gray-900 shadow-lg backdrop-blur-sm">
+          <span className="rounded-full bg-white/90 px-2.5 py-1 text-[11px] font-medium text-gray-900 shadow-lg backdrop-blur-sm">
             {season}
           </span>
         </div>
       </div>
 
-      <div className="flex flex-1 flex-col space-y-5 p-8">
-        <h3 className="font-playfair text-3xl font-bold leading-tight">{title}</h3>
-        <p className="leading-7 text-gray-600">{description}</p>
+      <div className="flex flex-1 flex-col space-y-4 p-5 sm:p-6">
+        <h3 className="font-playfair text-2xl font-bold leading-tight">{title}</h3>
+        <p className="text-sm leading-6 text-gray-600">{description}</p>
         <hr className="border-gray-200" />
 
-        <div className="flex flex-wrap gap-5 text-sm text-gray-600">
+        <div className="flex flex-wrap gap-x-4 gap-y-2 text-sm text-gray-600">
           <div className="flex items-center gap-2">
-            <CalendarDays size={18} />
+            <CalendarDays size={16} />
             <span>{duration}</span>
           </div>
           <div className="flex items-center gap-2">
-            <Mountain size={18} />
+            <Mountain size={16} />
             <span>{altitude}</span>
           </div>
           <div className="flex items-center gap-2">
-            <Bike size={18} />
+            <Bike size={16} />
             <span>{difficulty}</span>
           </div>
         </div>
 
         <Link
           href={`/expeditions/${slug}`}
-          className="mt-auto inline-flex w-full items-center justify-center rounded-xl bg-[#12372A] px-5 py-3.5 font-semibold text-white transition-colors hover:bg-[#1b4d39]"
+          className="mt-auto inline-flex w-full items-center justify-center rounded-xl bg-[#12372A] px-4 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#1b4d39]"
         >
           View Expedition
           <ArrowRight size={18} className="ml-2 transition-transform duration-300 group-hover:translate-x-1" />

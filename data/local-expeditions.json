@@ -1,0 +1,49 @@
+{
+  "created": [
+    {
+      "id": "zanskar-on-two-wheels",
+      "slug": "zanskar-on-two-wheels",
+      "title": "Zanskar on two wheels",
+      "region": "zanskar",
+      "duration": "8",
+      "difficulty": "Intermediate",
+      "altitude": "5000m",
+      "season": "june",
+      "image": "/images/expeditions/fa9b8ba2-5572-4b0f-b17f-86b368cc5846.jpg",
+      "description": "zanskar",
+      "pageContent": {
+        "eyebrow": "A journey through zanskar",
+        "heading": "dassfhjkl; dfhgjkhhjfgfjfdgfdfvcxfdrrgtuilhiiu",
+        "description": "Zanskar is a remote, high-altitude sub-district and valley located in the Union Territory of Ladakh, India, and also refers to a science-backed health and wellness brand",
+        "highlights": [
+          "aventur"
+        ],
+        "enquiryPrompt": "Can I join?"
+      },
+      "isArchived": false
+    }
+  ],
+  "archivedSlugs": [],
+  "imageOverrides": {},
+  "pageOverrides": {
+    "zanskar-on-two-wheels": {
+      "title": "Zanskar on two wheels",
+      "region": "zanskar",
+      "duration": "8",
+      "groupSize": "small group size",
+      "difficulty": "Intermediate",
+      "altitude": "5000m",
+      "season": "june",
+      "description": "zanskar",
+      "pageContent": {
+        "eyebrow": "A journey through zanskar",
+        "heading": "dassfhjkl; dfhgjkhhjfgfjfdgfdfvcxfdrrgtuilhiiu",
+        "description": "Zanskar is a remote, high-altitude sub-district and valley located in the Union Territory of Ladakh, India, and also refers to a science-backed health and wellness brand",
+        "highlights": [
+          "aventur"
+        ],
+        "enquiryPrompt": "Can I join?"
+      }
+    }
+  }
+}

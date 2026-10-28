@@ -97,7 +97,7 @@ export default function Footer() {
                 </span>
               </div>
 
-              <a href="mailto:hello@ridethehills.com" className={linkClass}>
+              <a href="mailto:wilderpraveen@gmail.com" className={linkClass}>
                 <Mail
                   size={17}
                   className="shrink-0 text-[#D8B878]"
@@ -107,7 +107,7 @@ export default function Footer() {
               </a>
 
               <a
-                href="https://www.instagram.com/"
+                href="https://www.instagram.com/bikethehills"
                 target="_blank"
                 rel="noreferrer"
                 className={linkClass}

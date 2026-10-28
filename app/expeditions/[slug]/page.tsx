@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 import {
   ArrowLeft,
   ArrowRight,
@@ -12,10 +13,11 @@ import {
   BedDouble,
   ShieldCheck,
 } from "lucide-react";
-import { expeditions } from "@/data/expeditions";
-import { expeditionPageContent } from "@/data/expedition-page-content";
 import Navbar from "@/components/layout/Navbar";
 import ItineraryAccordion from "@/components/expeditions/ItineraryAccordion";
+import { coldDesertItinerary } from "@/data/cold-desert-itinerary";
+import { getManagedItinerary } from "@/lib/managed-itinerary";
+import { getExpedition } from "@/lib/managed-expeditions";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
@@ -66,28 +68,15 @@ function BulletList({ items, positive = false }: { items: string[]; positive?: b
 
 export default async function ExpeditionDetailPage({ params }: PageProps) {
   const { slug } = await params;
-  const expedition = expeditions.find((trip) => trip.slug === slug);
+  const expedition = await getExpedition(slug);
 
-  if (!expedition) {
-    return (
-      <main className="min-h-screen bg-stone-50 px-6 py-32 text-center">
-        <h1 className="font-playfair text-4xl font-bold text-[#12372A]">Expedition not found</h1>
-        <Link href="/#expeditions" className="mt-6 inline-flex items-center gap-2 text-[#12372A] underline underline-offset-4">
-          <ArrowLeft size={18} /> Browse expeditions
-        </Link>
-      </main>
-    );
-  }
+  if (!expedition) notFound();
+
+  const savedItinerary = await getManagedItinerary(slug);
+  const itinerary = savedItinerary ?? (slug === "cold-desert-expedition" ? coldDesertItinerary : []);
 
   const isSummerMountainBiking = expedition.slug === "cold-desert-expedition";
-  const pageContent = expeditionPageContent[expedition.slug] ?? {
-    eyebrow: "The journey",
-    heading: `Explore ${expedition.region} by bicycle`,
-    description: expedition.description,
-    highlights: [expedition.region, expedition.duration, expedition.difficulty],
-    enquiryPrompt:
-      "Ask the team to confirm the route, daily riding, accommodation, and trip arrangements.",
-  };
+  const pageContent = expedition.pageContent;
 
   if (isSummerMountainBiking) {
     return (
@@ -212,7 +201,7 @@ export default async function ExpeditionDetailPage({ params }: PageProps) {
             <p className="mb-3 text-sm font-semibold uppercase tracking-[0.25em] text-[#12372A]">Day by day</p>
             <h2 className="font-playfair text-4xl font-bold text-gray-900 sm:text-5xl">Tour plan &amp; itinerary</h2>
             <p className="mt-5 max-w-3xl leading-7 text-gray-600">Distances and elevation figures below follow the supplied route plan. Actual riding conditions and timing can vary with weather, road conditions and the group.</p>
-            <ItineraryAccordion />
+            <ItineraryAccordion itinerary={itinerary} />
           </div>
         </section>
 
@@ -270,64 +259,125 @@ export default async function ExpeditionDetailPage({ params }: PageProps) {
   return (
     <main className="min-h-screen bg-stone-50">
       <Navbar />
-      <section className="relative isolate flex min-h-[62vh] items-end overflow-hidden px-6 pb-12 pt-28 sm:pb-16">
+      <section className="relative isolate flex min-h-[64vh] items-end overflow-hidden px-6 pb-14 pt-28 sm:pb-18">
         <Image src={expedition.image} alt={expedition.title} fill priority sizes="100vw" className="absolute inset-0 -z-20 object-cover" />
         <div className="absolute inset-0 -z-10 bg-linear-to-t from-black/85 via-black/40 to-black/15" />
         <div className="mx-auto w-full max-w-7xl text-white">
           <Link href="/#expeditions" className="mb-8 inline-flex items-center gap-2 text-sm font-medium text-white/90 transition hover:text-white"><ArrowLeft size={17} /> All expeditions</Link>
-          <p className="mb-4 text-sm font-semibold uppercase tracking-[0.28em] text-white/80">{expedition.region}</p>
+          <p className="mb-4 text-sm font-semibold uppercase tracking-[0.28em] text-white/80">{expedition.region} · Himalayan cycling</p>
           <h1 className="max-w-4xl font-playfair text-5xl font-bold leading-tight sm:text-6xl lg:text-7xl">{expedition.title}</h1>
           <p className="mt-6 max-w-2xl text-lg leading-8 text-white/90 sm:text-xl">{expedition.description}</p>
           <div className="mt-8 flex flex-wrap gap-3">
             <span className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-black/20 px-4 py-2 text-sm backdrop-blur-sm"><CalendarDays size={17} /> {expedition.duration}</span>
             <span className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-black/20 px-4 py-2 text-sm backdrop-blur-sm"><Bike size={17} /> {expedition.difficulty}</span>
+            <span className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-black/20 px-4 py-2 text-sm backdrop-blur-sm"><Users size={17} /> {expedition.groupSize}</span>
             <span className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-black/20 px-4 py-2 text-sm backdrop-blur-sm"><Mountain size={17} /> Up to {expedition.altitude}</span>
           </div>
         </div>
       </section>
       <section className="px-6 py-14 sm:py-16">
-        <div className="mx-auto grid max-w-7xl gap-14 lg:grid-cols-[1.15fr_0.85fr]">
+        <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[1.2fr_0.8fr]">
           <div>
             <p className="mb-3 text-sm font-semibold uppercase tracking-[0.25em] text-[#12372A]">{pageContent.eyebrow}</p>
             <h2 className="font-playfair text-4xl font-bold leading-tight text-gray-900 sm:text-5xl">{pageContent.heading}</h2>
-            <p className="mt-6 max-w-2xl text-lg leading-8 text-gray-600">{pageContent.description}</p>
-            <div className="mt-8 grid gap-3 sm:grid-cols-3">
-              {pageContent.highlights.map((highlight, index) => (
-                <div key={highlight} className="border-t border-stone-300 pt-4">
-                  <span className="text-xs font-semibold uppercase tracking-[0.18em] text-[#C79A3B]">0{index + 1}</span>
-                  <p className="mt-2 font-medium leading-6 text-gray-800">{highlight}</p>
+            <div className="mt-6 max-w-3xl space-y-5 text-lg leading-8 text-gray-600">
+              <p>{pageContent.description}</p>
+              <p>Each day brings a different view of {expedition.region}, with the route shaped by mountain roads, local communities, and changing conditions.</p>
+              <p>Final route details, daily distances, and support arrangements are confirmed with the Bike the Hills team before departure.</p>
+            </div>
+            <div className="mt-8 grid gap-4 sm:grid-cols-2">
+              {[
+                { icon: MapPinned, title: "Explore by bike", text: `Discover ${expedition.region} on a guided riding journey.` },
+                { icon: Mountain, title: "Mountain landscapes", text: "Experience the terrain and scenery that shape this route." },
+                { icon: Users, title: "Local character", text: "Meet the communities and culture along the way." },
+                { icon: ShieldCheck, title: "Plan with the team", text: "Discuss route details, daily riding, and support before departure." },
+              ].map(({ icon: Icon, title, text }) => (
+                <div key={title} className="rounded-2xl border border-stone-200/80 bg-white p-5 shadow-sm transition-shadow hover:shadow-md">
+                  <span className="flex size-11 items-center justify-center rounded-full bg-[#12372A]/10 text-[#12372A]"><Icon size={21} /></span>
+                  <h3 className="mt-4 font-semibold text-gray-900">{title}</h3>
+                  <p className="mt-2 leading-6 text-gray-600">{text}</p>
                 </div>
               ))}
-            </div>
-            <div className="mt-10 border-b border-stone-200 last:border-b-0 p-6 sm:p-8">
-              <h3 className="font-playfair text-2xl font-bold text-gray-900">Expedition overview</h3>
-              <div className="mt-6 grid gap-6 sm:grid-cols-2">
-                <div><p className="text-sm text-gray-500">Operating season</p><p className="mt-1 font-semibold text-gray-900">{expedition.season}</p></div>
-                <div><p className="text-sm text-gray-500">Difficulty</p><p className="mt-1 font-semibold text-gray-900">{expedition.difficulty}</p></div>
-                <div><p className="text-sm text-gray-500">Duration</p><p className="mt-1 font-semibold text-gray-900">{expedition.duration}</p></div>
-                <div><p className="text-sm text-gray-500">Highest altitude listed</p><p className="mt-1 font-semibold text-gray-900">{expedition.altitude}</p></div>
-              </div>
             </div>
           </div>
-          <aside className="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-black/5 sm:p-8">
-            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-[#12372A]">Trip details</p>
-            <h3 className="mt-3 font-playfair text-3xl font-bold text-gray-900">What to expect</h3>
-            <div className="mt-7 space-y-6">
+          <aside className="h-fit rounded-3xl border border-stone-200/80 bg-white p-6 shadow-lg shadow-stone-900/5 sm:p-8 lg:sticky lg:top-24">
+            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-[#12372A]">Expedition at a glance</p>
+            <h3 className="mt-3 font-playfair text-3xl font-bold text-gray-900">The essentials</h3>
+            <div className="mt-7 space-y-5">
               {[
                 { icon: CalendarDays, title: "Duration", detail: expedition.duration },
-                { icon: Mountain, title: "Region", detail: expedition.region },
                 { icon: Bike, title: "Difficulty", detail: expedition.difficulty },
-                { icon: Users, title: "Group format", detail: "Ask us about a tailored expedition" },
+                { icon: Users, title: "Group size", detail: expedition.groupSize },
+                { icon: Mountain, title: "Maximum altitude", detail: expedition.altitude },
+                { icon: CalendarDays, title: "Season", detail: expedition.season },
+                { icon: MapPinned, title: "Region", detail: expedition.region },
               ].map(({ icon: Icon, title, detail }) => (
-                <div key={title} className="flex gap-4">
-                  <span className="flex size-11 shrink-0 items-center justify-center rounded-full bg-[#12372A]/10 text-[#12372A]"><Icon size={21} /></span>
-                  <div><p className="font-semibold text-gray-900">{title}</p><p className="mt-1 leading-6 text-gray-600">{detail}</p></div>
+                <div key={title} className="flex gap-3">
+                  <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-stone-100 text-[#12372A]"><Icon size={19} /></span>
+                  <div><p className="text-sm text-gray-500">{title}</p><p className="mt-0.5 font-semibold text-gray-900">{detail}</p></div>
                 </div>
               ))}
             </div>
-            <div className="mt-8 border-t border-stone-200 pt-5"><div className="flex items-start gap-3"><CheckCircle2 size={20} className="mt-0.5 shrink-0 text-[#12372A]" /><p className="text-sm leading-6 text-gray-600">{pageContent.enquiryPrompt}</p></div></div>
-            <Link href={`/contact?expedition=${expedition.slug}`} className="mt-7 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#12372A] px-6 py-4 font-semibold text-white transition hover:bg-[#1b4d39]">Ask about this expedition <ArrowRight size={17} /></Link>
+            <Link href={`/contact?expedition=${expedition.slug}`} className="mt-8 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#12372A] px-6 py-4 font-semibold text-white transition hover:bg-[#1b4d39]">Enquire about this expedition <ArrowRight size={17} /></Link>
+            <p className="mt-3 text-center text-xs leading-5 text-gray-500">Dates, pricing, route details, and final arrangements are confirmed on enquiry.</p>
           </aside>
+        </div>
+      </section>
+      <section className="border-y border-stone-200 bg-white px-6 py-14 sm:py-16">
+        <div className="mx-auto max-w-7xl">
+          <div className="max-w-3xl">
+            <p className="mb-3 text-sm font-semibold uppercase tracking-[0.25em] text-[#12372A]">Tour highlights</p>
+            <h2 className="font-playfair text-4xl font-bold text-gray-900 sm:text-5xl">A journey through {expedition.region}</h2>
+          </div>
+          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {pageContent.highlights.map((item, index) => (
+              <div key={item} className="flex items-start gap-3 border-t border-stone-200 pt-5">
+                <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-[#12372A] text-sm font-semibold text-white">{String(index + 1).padStart(2, "0")}</span>
+                <p className="leading-6 text-gray-700">{item}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+      <section className="border-y border-stone-200 bg-white px-6 py-14 sm:py-16">
+        <div className="mx-auto max-w-5xl">
+          <p className="mb-3 text-sm font-semibold uppercase tracking-[0.25em] text-[#12372A]">Day by day</p>
+          <h2 className="font-playfair text-4xl font-bold text-gray-900 sm:text-5xl">Tour plan &amp; itinerary</h2>
+          <p className="mt-5 max-w-3xl leading-7 text-gray-600">Explore the daily route, ride type, distance, overnight elevation, and key stops for this expedition.</p>
+          <ItineraryAccordion itinerary={itinerary} />
+        </div>
+      </section>
+      <section className="border-y border-stone-200 bg-white px-6 py-14 sm:py-16">
+        <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-2">
+          <div className="rounded-3xl border border-stone-200 bg-white p-6 shadow-sm sm:p-8">
+            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-[#12372A]">Trip planning</p>
+            <h2 className="mt-3 font-playfair text-3xl font-bold text-gray-900">What to confirm with us</h2>
+            <BulletList items={["Final day-by-day route and cycling distances", "Travel dates and group availability", "Accommodation and meal arrangements", "Bike options and support arrangements"]} positive />
+          </div>
+          <div className="rounded-3xl border border-stone-200 p-6 sm:p-8">
+            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-[#12372A]">Before you ride</p>
+            <h2 className="mt-3 font-playfair text-3xl font-bold text-gray-900">Prepare for the mountains</h2>
+            <BulletList items={["Build fitness for consecutive days of riding", "Discuss altitude and acclimatisation with the team", "Pack for changing mountain weather", "Keep some flexibility for road and weather conditions"]} />
+            <p className="mt-6 border-t border-stone-200 pt-5 text-sm leading-6 text-gray-500">Your team can confirm trip-specific preparation advice before you book.</p>
+          </div>
+        </div>
+      </section>
+      <section className="px-6 py-14 sm:py-20">
+        <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.8fr_1.2fr]">
+          <div>
+            <p className="mb-3 text-sm font-semibold uppercase tracking-[0.25em] text-[#12372A]">Good to know</p>
+            <h2 className="font-playfair text-4xl font-bold leading-tight text-gray-900 sm:text-5xl">Is this expedition for me?</h2>
+          </div>
+          <div className="space-y-5 text-lg leading-8 text-gray-600">
+            <p>{expedition.description}</p>
+            <p>This ride is rated {expedition.difficulty.toLowerCase()}. The team can talk through the daily effort, altitude, and preparation needed for your experience level.</p>
+            <p>Mountain conditions can change. The route and schedule may need to adapt to weather, road conditions, or group wellbeing.</p>
+            <div className="rounded-2xl bg-[#12372A] p-6 text-white sm:p-8">
+              <h3 className="font-playfair text-2xl font-bold">Ready to explore {expedition.region}?</h3>
+              <p className="mt-3 leading-7 text-white/80">{pageContent.enquiryPrompt}</p>
+              <Link href={`/contact?expedition=${expedition.slug}`} className="mt-6 inline-flex items-center gap-2 rounded-xl bg-white px-5 py-3 font-semibold text-[#12372A] transition hover:bg-stone-100">Enquiry form <ArrowRight size={17} /></Link>
+            </div>
+          </div>
         </div>
       </section>
     </main>

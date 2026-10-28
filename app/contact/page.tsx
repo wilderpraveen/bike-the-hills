@@ -4,7 +4,7 @@ import { Mail, MapPin, ArrowUpRight } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import InteriorHero from "@/components/shared/InteriorHero";
-import { expeditions } from "@/data/expeditions";
+import { getExpeditions } from "@/lib/managed-expeditions";
 
 export const metadata: Metadata = {
   title: "Contact Bike the Hills | Plan a Himalayan Cycling Trip",
@@ -21,6 +21,7 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
   const requestedSlug = Array.isArray(params.expedition)
     ? params.expedition[0]
     : params.expedition;
+  const expeditions = await getExpeditions();
   const requestedExpedition = expeditions.find(
     (expedition) => expedition.slug === requestedSlug,
   );

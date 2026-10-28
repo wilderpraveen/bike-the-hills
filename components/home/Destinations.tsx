@@ -3,11 +3,11 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { destinations } from "@/data/destinations";
+import type { DestinationContent, SiteContent } from "@/lib/site-content";
 
-export default function Destinations() {
+export default function Destinations({ content, destinations }: { content: SiteContent["home"]["destinations"]; destinations: DestinationContent[] }) {
   return (
-    <section id="destinations" className="relative overflow-hidden bg-white py-24">
+    <section id="destinations" className="relative overflow-hidden bg-white py-14 sm:py-16">
       <div className="container mx-auto px-6 flex flex-col items-center">
         {/* Section Heading */}
 
@@ -16,25 +16,24 @@ export default function Destinations() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="mx-auto mb-14 max-w-3xl text-center"
+          className="mx-auto mb-10 max-w-3xl text-center"
         >
           <p className="mb-4 text-sm uppercase tracking-[0.35em] text-[#12372A]">
-            Explore the Himalayas
+            {content.eyebrow}
           </p>
 
-          <h2 className="font-playfair text-5xl font-bold text-gray-900">
-            Places Worth Riding To
+          <h2 className="font-playfair text-4xl font-bold text-gray-900 sm:text-5xl">
+            {content.title}
           </h2>
 
-          <p className="mt-6 text-lg leading-8 text-gray-600">
-            Go beyond the famous viewpoints and discover the villages,
-            valleys, and mountain landscapes that make Spiti unforgettable.
+          <p className="mt-4 text-base leading-7 text-gray-600 sm:text-lg sm:leading-8">
+            {content.description}
           </p>
         </motion.div>
 
         {/* Destination Cards */}
 
-        <div className="grid gap-8 md:grid-cols-3">
+        <div className="grid gap-6 md:grid-cols-3">
           {destinations.map((destination, index) => (
             <motion.article
               key={destination.slug}
@@ -50,7 +49,7 @@ export default function Destinations() {
             >
               {/* Image */}
 
-              <div className="relative h-72 overflow-hidden">
+              <div className="relative h-60 overflow-hidden sm:h-64">
                 <Image
                   src={destination.image}
                   alt={destination.name}
@@ -62,12 +61,12 @@ export default function Destinations() {
 
               {/* Content */}
 
-              <div className="p-7">
-                <h3 className="font-playfair text-3xl font-semibold text-gray-900">
+              <div className="p-6">
+                <h3 className="font-playfair text-2xl font-semibold text-gray-900 sm:text-3xl">
                   {destination.name}
                 </h3>
 
-                <p className="mt-4 leading-7 text-gray-600">
+                <p className="mt-3 leading-7 text-gray-600">
                   {destination.description}
                 </p>
 

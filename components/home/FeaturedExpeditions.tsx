@@ -1,17 +1,22 @@
 import SectionHeading from "@/components/shared/SectionHeading";
 import ExpeditionCard from "@/components/cards/ExpeditionCard";
-import { expeditions } from "@/data/expeditions";
+import { getExpeditions } from "@/lib/managed-expeditions";
+import type { SiteContent } from "@/lib/site-content";
 
-export default function FeaturedExpeditions() {
+export default async function FeaturedExpeditions({ content }: { content: SiteContent["home"]["featured"] }) {
+  const allExpeditions = await getExpeditions();
+  const expeditions = content.expeditionSlugs
+    .map((slug) => allExpeditions.find((trip) => trip.slug === slug))
+    .filter((trip) => trip !== undefined);
   return (
-    <section id="expeditions" className="relative overflow-hidden bg-stone-50 py-28">
+    <section id="expeditions" className="relative overflow-hidden bg-stone-50 py-14 sm:py-16">
       <div className="container relative z-10 mx-auto px-6">
         <SectionHeading
-          eyebrow="Our Expeditions"
-          title="Ride Beyond the Ordinary"
-          description="Carefully designed Himalayan cycling expeditions created for riders seeking authentic landscapes, living culture, and unforgettable mountain journeys."
+          eyebrow={content.eyebrow}
+          title={content.title}
+          description={content.description}
         />
-        <div className="mt-16 grid gap-10 lg:grid-cols-3">
+        <div className="mt-10 grid gap-6 lg:grid-cols-3 lg:gap-8">
           {expeditions.map((trip) => (
             <ExpeditionCard
               key={trip.id}

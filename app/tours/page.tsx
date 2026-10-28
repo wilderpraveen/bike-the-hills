@@ -3,8 +3,9 @@ import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import InteriorHero from "@/components/shared/InteriorHero";
+import GoogleReviews from "@/components/shared/GoogleReviews";
 import ExpeditionCard from "@/components/cards/ExpeditionCard";
-import { expeditions } from "@/data/expeditions";
+import { getExpeditions } from "@/lib/managed-expeditions";
 
 export const metadata: Metadata = {
   title: "Himalayan Cycling Tours | Bike the Hills",
@@ -12,7 +13,8 @@ export const metadata: Metadata = {
     "Explore guided cycling expeditions through Spiti and the Himalayas with Bike the Hills.",
 };
 
-export default function ToursPage() {
+export default async function ToursPage() {
+  const expeditions = await getExpeditions();
   return (
     <>
       <Navbar />
@@ -52,6 +54,8 @@ export default function ToursPage() {
             </p>
           </div>
         </section>
+
+        <GoogleReviews />
 
         <section className="bg-[#12372A] py-16 text-white sm:py-20">
           <div className="mx-auto flex max-w-7xl flex-col gap-6 px-6 sm:flex-row sm:items-center sm:justify-between lg:px-8">

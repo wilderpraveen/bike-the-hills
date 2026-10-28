@@ -4,13 +4,14 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import type { SiteContent } from "@/lib/site-content";
 
-export default function Hero() {
+export default function Hero({ content }: { content: SiteContent["home"]["hero"] }) {
   return (
-    <section className="relative flex min-h-screen items-center justify-center overflow-hidden">
+    <section className="relative flex min-h-[82svh] items-center justify-center overflow-hidden">
       {/* Background Image */}
       <Image
-        src="/images/Hero/spiti-hero.jpg"
+        src={content.image}
         alt="Cycling in Spiti Valley"
         fill
         priority
@@ -28,7 +29,7 @@ export default function Hero() {
           transition={{ duration: 0.7 }}
           className="mb-4 uppercase tracking-[0.35em] text-sm"
         >
-          Bike the Hills • Spiti Valley
+          {content.eyebrow}
         </motion.p>
 
         <motion.h1
@@ -37,9 +38,7 @@ export default function Hero() {
           transition={{ delay: 0.2 }}
           className="font-playfair text-5xl font-bold leading-tight md:text-7xl"
         >
-          Every Ride
-          <br />
-          Tells a Story
+          <span className="whitespace-pre-line">{content.title}</span>
         </motion.h1>
 
         <motion.p
@@ -48,9 +47,7 @@ export default function Hero() {
           transition={{ delay: 0.5 }}
           className="mx-auto mt-8 max-w-2xl text-lg text-gray-200"
         >
-          Discover ancient monasteries, hidden villages,
-          and unforgettable cycling adventures across the
-          breathtaking landscapes of Spiti Valley.
+          {content.description}
         </motion.p>
 
         <motion.div
@@ -64,7 +61,7 @@ export default function Hero() {
   className="bg-[#12372A] px-8 py-6 text-base text-white rounded-md hover:bg-[#1b4d39]"
   asChild
 >
-  <Link href="/tours">Explore Tours</Link>
+  <Link href="/tours">{content.primaryCta}</Link>
 </Button>
 
 <Button
@@ -73,7 +70,7 @@ export default function Hero() {
   className="border-2 border-white bg-white/10 px-8 py-6 text-base text-white rounded-md backdrop-blur-sm hover:bg-white hover:text-[#12372A]"
   asChild
 >
-  <Link href="/about">Our Story</Link>
+  <Link href="/about">{content.secondaryCta}</Link>
 </Button>
 </motion.div>
       </div>

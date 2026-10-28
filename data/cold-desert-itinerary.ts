@@ -1,12 +1,4 @@
-export type ExpeditionDay = {
-  day: number;
-  title: string;
-  mode: "Cycling" | "Transfer" | "Cycling / transfer" | "To be confirmed";
-  distance: string;
-  sleepingElevation: string;
-  description: string;
-  highlights: string[];
-};
+import type { ExpeditionDay } from "@/lib/expedition-itinerary";
 
 export const coldDesertItinerary: ExpeditionDay[] = [
   {

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { ChevronDown, Bike, Mountain, CarFront } from "lucide-react";
-import { coldDesertItinerary } from "@/data/cold-desert-itinerary";
+import type { ExpeditionDay } from "@/lib/expedition-itinerary";
 
 function ModeIcon({ mode }: { mode: string }) {
   if (mode === "Transfer") return <CarFront size={16} aria-hidden="true" />;
@@ -10,12 +10,12 @@ function ModeIcon({ mode }: { mode: string }) {
   return <Mountain size={16} aria-hidden="true" />;
 }
 
-export default function ItineraryAccordion() {
+export default function ItineraryAccordion({ itinerary }: { itinerary: ExpeditionDay[] }) {
   const [openDay, setOpenDay] = useState<number | null>(1);
 
   return (
     <div className="mt-10 divide-y divide-stone-200 border-y border-stone-200">
-      {coldDesertItinerary.map((day) => {
+      {itinerary.map((day) => {
         const isOpen = openDay === day.day;
         return (
           <article key={day.day} className="py-1">
@@ -56,6 +56,9 @@ export default function ItineraryAccordion() {
           </article>
         );
       })}
+      {itinerary.length === 0 && (
+        <p className="py-8 text-gray-600">The day-by-day itinerary is being prepared. Contact us for the latest route details.</p>
+      )}
     </div>
   );
 }

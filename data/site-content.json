@@ -1,0 +1,83 @@
+{
+  "home": {
+    "hero": {
+      "eyebrow": "Bike the Hills • Spiti Valley",
+      "title": "Every Ride\nTells a Story",
+      "description": "Discover ancient monasteries, hidden villages, and unforgettable cycling adventures across the breathtaking landscapes of Spiti Valley.",
+      "image": "/images/Hero/spiti-hero.jpg",
+      "primaryCta": "Explore Tours",
+      "secondaryCta": "Our Story"
+    },
+    "featured": {
+      "eyebrow": "Our Expeditions",
+      "title": "Ride Beyond the Ordinary",
+      "description": "Carefully designed Himalayan cycling expeditions created for riders seeking authentic landscapes, living culture, and unforgettable mountain journeys.",
+      "expeditionSlugs": ["cold-desert-expedition", "hidden-valleys-expedition", "high-himalayan-traverse"]
+    },
+    "whyRide": {
+      "eyebrow": "Why Ride With Us",
+      "title": "The Himalayas, Differently",
+      "description": "We believe the best cycling experiences are not just about the kilometres you ride, but the places you discover and the people you meet along the way.",
+      "cards": [
+        { "title": "Local Knowledge", "description": "Ride with people who know Spiti beyond the usual tourist routes, with local insight into its roads, villages, and landscapes." },
+        { "title": "Built for the Himalayas", "description": "Our rides are designed around high-altitude terrain, changing conditions, and the realities of cycling in the mountains." },
+        { "title": "Small Groups", "description": "Keep the experience personal with carefully managed groups where every rider gets the attention and support they need." },
+        { "title": "More Than a Ride", "description": "Meet local communities, discover Himalayan culture, and experience places that stay with you long after the ride ends." }
+      ]
+    },
+    "hiddenRoutes": {
+      "eyebrow": "Hidden Himalayan Routes",
+      "title": "Not Every Himalayan Road Is Worth Riding.",
+      "description": "Some roads connect places. The best roads connect people, landscapes, and stories.",
+      "story": "Others lead you through forgotten villages, ancient monasteries, high mountain deserts, and stories that few cyclists ever experience.",
+      "highlights": [
+        "Hidden villages beyond the tourist trail",
+        "Ancient monasteries and living Himalayan culture",
+        "Remote mountain passes and forgotten valleys",
+        "Designed and guided by a Spiti local"
+      ],
+      "image": "/images/routes/hidden-route.jpg"
+    },
+    "destinations": {
+      "eyebrow": "Explore the Himalayas",
+      "title": "Places Worth Riding To",
+      "description": "Go beyond the famous viewpoints and discover the villages, valleys, and mountain landscapes that make Spiti unforgettable."
+    },
+    "experience": {
+      "eyebrow": "The Bike the Hills Experience",
+      "title": "More Than Just a Cycling Tour",
+      "description": "Every expedition is thoughtfully designed to immerse you in the landscapes, culture, and spirit of the Himalayas. Ride with locals, discover hidden places, and experience Spiti beyond the ordinary.",
+      "highlights": [
+        "Local guides born and raised in Spiti",
+        "Premium mountain bikes maintained daily",
+        "Small groups for a personal experience",
+        "Authentic villages, monasteries and culture"
+      ],
+      "image": "/images/experience.jpg"
+    },
+    "testimonials": {
+      "eyebrow": "Rider Stories",
+      "title": "Stories From The Road",
+      "description": "Every journey leaves a story. Hear from riders who have explored the Himalayas with Bike the Hills.",
+      "items": [
+        { "quote": "Cycling through Spiti with Bike the Hills was one of the most memorable adventures of my life. The landscapes were incredible, but the local knowledge made the journey truly special.", "name": "James Wilson", "country": "United Kingdom" },
+        { "quote": "The experience felt completely different from a typical cycling tour. We rode through remote villages, met local people and discovered parts of Spiti we would never have found ourselves.", "name": "Sophie Martin", "country": "France" },
+        { "quote": "The downhill ride from Komic was absolutely incredible. The bikes were well maintained, the route was spectacular and the team made the whole adventure feel safe and exciting.", "name": "Daniel Carter", "country": "Australia" }
+      ]
+    }
+  },
+  "destinationsPage": {
+    "heroEyebrow": "Explore the Himalayas",
+    "heroTitle": "Places worth riding to",
+    "heroDescription": "Go beyond the famous viewpoints and discover the villages and mountain landscapes that make Spiti unforgettable.",
+    "heroImage": "/images/langza1.jpg",
+    "sectionEyebrow": "Slow down and look around",
+    "sectionTitle": "A few places along the way",
+    "sectionDescription": "Each stop offers its own view of life in the high desert. These are some of the places our journeys are made to experience."
+  },
+  "destinations": [
+    { "slug": "langza", "name": "Langza", "description": "Ride into one of Spiti's most iconic high-altitude villages, surrounded by fossils, open valleys, and spectacular mountain landscapes.", "image": "/images/langza1.jpg" },
+    { "slug": "komic", "name": "Komic", "description": "Climb into the high desert to Komic, a remote Himalayan village and the starting point for our signature downhill experience.", "image": "/images/komic.jpg" },
+    { "slug": "pin-valley", "name": "Pin Valley", "description": "Discover a quieter side of Spiti through remote villages, dramatic valleys, and landscapes far beyond the usual tourist trail.", "image": "/images/pin-valley.jpg" }
+  ]
+}

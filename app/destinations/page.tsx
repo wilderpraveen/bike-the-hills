@@ -4,7 +4,7 @@ import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import InteriorHero from "@/components/shared/InteriorHero";
-import { destinations } from "@/data/destinations";
+import { getSiteContent } from "@/lib/site-content";
 
 export const metadata: Metadata = {
   title: "Spiti Valley Destinations | Bike the Hills",
@@ -12,35 +12,35 @@ export const metadata: Metadata = {
     "Discover the villages, valleys, and high desert landscapes featured in Bike the Hills cycling journeys.",
 };
 
-export default function DestinationsPage() {
+export default async function DestinationsPage() {
+  const content = await getSiteContent();
   return (
     <>
       <Navbar />
       <main>
         <InteriorHero
-          eyebrow="Explore the Himalayas"
-          title="Places worth riding to"
-          description="Go beyond the famous viewpoints and discover the villages and mountain landscapes that make Spiti unforgettable."
-          image="/images/langza1.jpg"
+          eyebrow={content.destinationsPage.heroEyebrow}
+          title={content.destinationsPage.heroTitle}
+          description={content.destinationsPage.heroDescription}
+          image={content.destinationsPage.heroImage}
         />
 
         <section className="bg-stone-50 py-20 sm:py-24">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <div className="mb-12 max-w-3xl">
               <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[#12372A]">
-                Slow down and look around
+                {content.destinationsPage.sectionEyebrow}
               </p>
               <h2 className="mt-4 font-playfair text-4xl font-bold text-gray-900 sm:text-5xl">
-                A few places along the way
+                {content.destinationsPage.sectionTitle}
               </h2>
               <p className="mt-5 text-lg leading-8 text-gray-600">
-                Each stop offers its own view of life in the high desert. These
-                are some of the places our journeys are made to experience.
+                {content.destinationsPage.sectionDescription}
               </p>
             </div>
 
             <div className="grid gap-8 lg:grid-cols-3">
-              {destinations.map((destination, index) => (
+              {content.destinations.map((destination, index) => (
                 <article
                   key={destination.slug}
                   id={destination.slug}

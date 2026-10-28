@@ -10,7 +10,7 @@ export const expeditions = [
     season: "June - September",
     image: "/images/routes/spiti.jpg",
     description:
-      "Ride from the green valleys of Kinnaur into Spiti’s dramatic cold desert, passing remote villages, Buddhist monasteries and high mountain landscapes.",
+      "Cycle from Kinnaur’s green valleys into Spiti’s cold desert, passing remote villages and historic monasteries.",
   },
 
   {
@@ -24,7 +24,7 @@ export const expeditions = [
     season: "May - October",
     image: "/images/routes/valley.jpg",
     description:
-      "Explore forgotten Himalayan valleys where local culture, monasteries and quiet roads create unforgettable rides.",
+      "Explore quiet Himalayan valleys, local culture, monasteries and scenic roads beyond the usual routes.",
   },
 
   {
@@ -38,6 +38,8 @@ export const expeditions = [
     season: "July - September",
     image: "/images/routes/himalaya.jpg",
     description:
-      "A challenging expedition across dramatic mountain terrain designed for experienced cyclists seeking true adventure.",
+      "Cross dramatic Trans-Himalayan terrain on a demanding expedition designed for experienced cyclists.",
   },
 ];
+
+export type Expedition = (typeof expeditions)[number];

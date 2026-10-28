@@ -9,21 +9,15 @@ import {
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
+import type { SiteContent } from "@/lib/site-content";
 
-const highlights = [
-  "Hidden villages beyond the tourist trail",
-  "Ancient monasteries and living Himalayan culture",
-  "Remote mountain passes and forgotten valleys",
-  "Designed and guided by a Spiti local",
-];
-
-export default function HiddenRoutes() {
+export default function HiddenRoutes({ content }: { content: SiteContent["home"]["hiddenRoutes"] }) {
   return (
-    <section className="relative overflow-hidden bg-white pt-12 pb-28">
+    <section className="relative overflow-hidden bg-white pt-6 pb-14 sm:pt-8 sm:pb-16">
 
       <div className="relative z-10 container mx-auto px-6">
 
-        <div className="grid items-center gap-16 lg:grid-cols-2">
+        <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-12">
 
           {/* Left Side */}
 
@@ -34,30 +28,23 @@ export default function HiddenRoutes() {
             transition={{ duration: .7 }}
           >
             <p className="mb-4 uppercase tracking-[0.35em] text-sm text-[#12372A]">
-              Hidden Himalayan Routes
+              {content.eyebrow}
             </p>
 
-            <h2 className="font-playfair text-5xl font-bold leading-tight">
-              Not Every Himalayan Road
-              <br />
-              Is Worth Riding.
+            <h2 className="whitespace-pre-line font-playfair text-4xl font-bold leading-tight sm:text-5xl">
+              {content.title}
             </h2>
 
-            <p className="mt-8 text-lg leading-8 text-gray-600">
-              Some roads connect places. The best roads connect people, landscapes, and stories.
-
-              <br />
-              <br />
-
-              Others lead you through forgotten villages,
-              ancient monasteries, high mountain deserts,
-              and stories that few cyclists ever experience.
-
+            <p className="mt-6 text-base leading-7 text-gray-600 sm:text-lg sm:leading-8">
+              {content.description}
+            </p>
+            <p className="mt-3 text-base leading-7 text-gray-600 sm:text-lg sm:leading-8">
+              {content.story}
             </p>
 
-            <div className="mt-10 space-y-4">
+            <div className="mt-7 space-y-3">
 
-              {highlights.map((item) => (
+              {content.highlights.map((item) => (
                 <div
                   key={item}
                   className="flex items-center gap-3"
@@ -75,7 +62,7 @@ export default function HiddenRoutes() {
 
             </div>
 
-            <Button asChild className="mt-14 rounded-md bg-[#12372A] hover:bg-[#1b4d39]">
+            <Button asChild className="mt-9 rounded-md bg-[#12372A] hover:bg-[#1b4d39]">
               <Link href="/destinations">
                 Discover the Routes
                 <ArrowRight className="ml-2" size={18} />
@@ -94,10 +81,10 @@ export default function HiddenRoutes() {
             className="relative"
           >
 
-            <div className="overflow-hidden rounded-3xl shadow-2xl aspect-4/5">
+            <div className="aspect-4/3 overflow-hidden rounded-3xl shadow-2xl">
 
               <Image
-                src="/images/routes/hidden-route.jpg"
+                src={content.image}
                 alt="Cycling through hidden Himalayan roads"
                 width={900}
                 height={1100}

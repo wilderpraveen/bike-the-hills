@@ -13,7 +13,7 @@ export default function SectionHeading({
 }: SectionHeadingProps) {
   return (
     <div
-      className={`mb-16 ${
+      className={`mb-10 ${
         centered ? "text-center" : "text-left"
       }`}
     >
@@ -21,12 +21,12 @@ export default function SectionHeading({
         {eyebrow}
       </p>
 
-      <h2 className="mt-4 font-playfair text-5xl font-bold text-gray-900">
+      <h2 className="mt-3 font-playfair text-4xl font-bold text-gray-900 sm:text-5xl">
         {title}
       </h2>
 
       <p
-        className={`mt-6 text-lg  aling-center leading-8 text-gray-600 ${
+        className={`mt-4 text-base leading-7 text-gray-600 sm:text-lg ${
           centered
             ? "mx-auto max-w-3xl"
             : "max-w-2xl"
